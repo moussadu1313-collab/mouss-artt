@@ -1,0 +1,1501 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Mouss'ART — Peinture & Rénovation intérieure haut de gamme · Marseille</title>
+<meta name="description" content="Mouss'ART, artisan peintre et rénovation intérieure à Marseille. Peinture, carrelage, parquet, sols PVC et finitions premium. Devis gratuit sous 24h." />
+<meta name="theme-color" content="#18191B" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --ink: #18191B;
+  --ink-2:#2D2C2C;
+  --anthracite:#2D2C2C;
+  --paper:#E2DBCC;
+  --paper-2:#D5CDBE;
+  --paper-3:#C7BFAE;
+  --orange:#F2A632;
+  --orange-2:#D88E1F;
+  --orange-3:#E7982D;
+  --turq:#5AA6B6;
+  --turq-2:#3F8A99;
+  --turq-3:#75C4D0;
+  --muted:#6B6457;
+  --line: rgba(24,25,27,.14);
+  --line-2: rgba(24,25,27,.07);
+
+  --f-display:"Instrument Serif", "Times New Roman", serif;
+  --f-sans:"Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --maxw: 1320px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --r-sm: 6px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+
+  --ease: cubic-bezier(.2,.7,.2,1);
+}
+
+/* ============ RESET ============ */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{
+  font-family:var(--f-sans);
+  color:var(--ink);
+  background:var(--paper);
+  font-size:17px;
+  line-height:1.55;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img,svg,video{display:block; max-width:100%}
+a{color:inherit; text-decoration:none}
+button{font:inherit; color:inherit; border:none; background:none; cursor:pointer}
+input,textarea,select{font:inherit; color:inherit}
+::selection{background:var(--orange); color:#fff}
+
+/* ============ TYPE ============ */
+.eyebrow{
+  font-family:var(--f-mono);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  display:inline-flex; align-items:center; gap:10px;
+}
+.eyebrow::before{
+  content:""; width:24px; height:1px; background:currentColor; opacity:.5;
+}
+h1,h2,h3,h4{font-family:var(--f-display); font-weight:400; letter-spacing:-.01em; line-height:1.02; margin:0; text-wrap:balance}
+h1{ font-size: clamp(54px, 8.4vw, 140px); }
+h2{ font-size: clamp(40px, 5.6vw, 84px); line-height:1.04; }
+h3{ font-size: clamp(26px, 2.4vw, 36px); line-height:1.1; }
+.italic{font-style:italic}
+.serif{font-family:var(--f-display)}
+p{margin:0 0 1em; text-wrap:pretty}
+.lead{ font-size: clamp(18px, 1.4vw, 21px); line-height:1.5; color:#2D2C2C; max-width:54ch }
+
+/* ============ LAYOUT ============ */
+.container{ max-width:var(--maxw); margin:0 auto; padding:0 var(--gutter) }
+.section{ padding: clamp(80px, 11vw, 160px) 0; position:relative }
+.section--tight{ padding: clamp(60px, 7vw, 100px) 0 }
+.divider{ height:1px; background:var(--line) }
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed; inset:0 0 auto 0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 18px var(--gutter);
+  transition: background .35s var(--ease), backdrop-filter .35s var(--ease), padding .3s var(--ease), border-color .3s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.nav.is-scrolled{
+  background: rgba(226,219,204,.82);
+  backdrop-filter: saturate(1.2) blur(14px);
+  -webkit-backdrop-filter: saturate(1.2) blur(14px);
+  padding: 12px var(--gutter);
+  border-bottom-color: var(--line);
+}
+.brand{ display:flex; align-items:center; gap:12px; font-family:var(--f-display); font-size:24px; letter-spacing:-.01em }
+.brand .logo-img{
+  width:40px; height:40px; border-radius:50%;
+  object-fit:cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+  flex:none;
+}
+.brand b{font-weight:400}
+.brand i{font-style:italic; color:var(--orange)}
+.nav-links{ display:flex; gap:34px; align-items:center; }
+.nav-links a{
+  font-size:14px; font-weight:500; color:var(--ink); position:relative; padding:6px 0;
+}
+.nav-links a::after{
+  content:""; position:absolute; left:0; right:100%; bottom:0; height:1px; background:var(--ink);
+  transition: right .35s var(--ease);
+}
+.nav-links a:hover::after{ right:0 }
+.nav-cta{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:12px 20px; border-radius:999px;
+  background:var(--ink); color:var(--paper);
+  font-size:14px; font-weight:500;
+  transition: background .25s var(--ease), transform .25s var(--ease);
+}
+.nav-cta:hover{ background:var(--orange); transform:translateY(-1px) }
+.nav-cta .dot{ width:6px;height:6px; border-radius:50%; background:#7DDB7D; box-shadow:0 0 0 4px rgba(125,219,125,.18) }
+.burger{ display:none; width:42px; height:42px; border:1px solid var(--line); border-radius:50%; align-items:center; justify-content:center }
+.burger span{ display:block; width:16px; height:1.5px; background:var(--ink); position:relative }
+.burger span::before,.burger span::after{ content:""; position:absolute; left:0; right:0; height:1.5px; background:var(--ink) }
+.burger span::before{ top:-5px } .burger span::after{ top:5px }
+
+/* ============ HERO ============ */
+.hero{
+  min-height: 100svh;
+  padding-top: 120px;
+  padding-bottom: 60px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  position:relative; overflow:hidden;
+}
+.hero::before{
+  content:""; position:absolute; right:-10%; top:8%;
+  width:520px; height:520px; border-radius:50%;
+  background: radial-gradient(circle at 35% 35%, #FFC36A, var(--orange) 55%, var(--orange-2));
+  filter: blur(0px);
+  opacity:.95;
+  z-index:0;
+  box-shadow: inset 0 -40px 60px rgba(0,0,0,.18);
+}
+.hero::after{
+  content:""; position:absolute; left:-200px; bottom:-200px;
+  width:520px; height:520px; border-radius:50%;
+  background: var(--turq); opacity:.18; z-index:0;
+}
+.hero-grid{ display:grid; grid-template-columns: 1.05fr .95fr; gap:80px; align-items:end; position:relative; z-index:2 }
+.hero-meta{ display:flex; gap:28px; align-items:center; flex-wrap:wrap; margin-bottom:40px }
+.hero-meta .pill{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:8px 14px; border:1px solid var(--line); border-radius:999px;
+  background: rgba(255,255,255,.5);
+  font-family:var(--f-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+}
+.hero-meta .pill .d{ width:6px;height:6px;border-radius:50%; background:var(--orange) }
+.hero h1{ margin-bottom: 38px; }
+.hero h1 .row{ display:block }
+.hero h1 .pic{
+  display:inline-block; width: clamp(110px, 13vw, 200px); height: clamp(64px, 7vw, 100px);
+  border-radius:999px; vertical-align:middle; margin:0 .2em -.04em;
+  overflow:hidden; position:relative;
+  background: linear-gradient(120deg, var(--turq), var(--turq-2));
+}
+.hero h1 .pic img{
+  width:100%; height:100%; object-fit:cover; object-position:center;
+}
+.hero-right{ padding-bottom: 6px; display:flex; flex-direction:column; gap:32px; align-items:flex-start }
+.hero-right .lead{ max-width: 38ch }
+.cta-row{ display:flex; gap:14px; flex-wrap:wrap; align-items:center }
+.btn{
+  display:inline-flex; align-items:center; gap:12px;
+  padding:18px 26px; border-radius:999px; font-weight:500; font-size:15px;
+  transition: transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease);
+  border:1px solid transparent;
+}
+.btn-primary{ background:var(--ink); color:var(--paper) }
+.btn-primary:hover{ background:var(--orange); transform:translateY(-2px) }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink) }
+.btn-ghost:hover{ background:var(--ink); color:var(--paper) }
+.btn .arrow{ width:18px; height:18px; display:inline-block; position:relative }
+.btn .arrow::before{
+  content:""; position:absolute; left:0; right:0; top:50%;
+  height:1.2px; background:currentColor; transform:translateY(-50%);
+}
+.btn .arrow::after{
+  content:""; position:absolute; right:0; top:50%; width:7px; height:7px;
+  border-right:1.2px solid currentColor; border-top:1.2px solid currentColor;
+  transform: translate(0,-50%) rotate(45deg);
+}
+
+.hero-foot{
+  position:relative; z-index:2;
+  margin-top: 80px;
+  display:grid; grid-template-columns: repeat(4, 1fr); gap:0;
+  border-top:1px solid var(--line);
+  padding-top:28px;
+}
+.hero-foot > div{ padding-right:24px; border-right:1px solid var(--line-2) }
+.hero-foot > div:last-child{ border-right:none }
+.hero-foot .k{ font-family:var(--f-display); font-size: clamp(36px, 4vw, 56px); line-height:1; }
+.hero-foot .k em{ color:var(--orange); font-style:normal }
+.hero-foot .l{ display:block; margin-top:10px; font-size:13px; color:var(--muted); max-width:22ch }
+
+/* hero ticker */
+.ticker{
+  position:relative; z-index:2;
+  margin-top: 28px;
+  display:flex; align-items:center; gap: 36px;
+  font-family:var(--f-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muted);
+  overflow:hidden;
+  white-space:nowrap;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ticker-track{ display:inline-flex; gap:36px; animation: tick 38s linear infinite }
+.ticker .dot{ width:5px; height:5px; border-radius:50%; background:var(--orange); flex:none }
+@keyframes tick{ from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
+
+/* ============ SECTION HEADERS ============ */
+.sec-head{ display:grid; grid-template-columns: 1fr 1.5fr; gap:60px; align-items:end; margin-bottom: 70px }
+.sec-head h2{ max-width: 16ch }
+.sec-head .desc{ color:#2D2C2C; max-width:54ch; font-size: clamp(16px, 1.15vw, 18px); line-height:1.6 }
+.sec-head .desc em{ font-family:var(--f-display); color:var(--ink); font-style:italic; font-size:1.15em }
+
+/* ============ ABOUT ============ */
+.about{ background:var(--paper) }
+.about-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 90px); align-items:start }
+.about-figure{
+  aspect-ratio: 4 / 5;
+  border-radius: var(--r-lg);
+  position:relative; overflow:hidden;
+}
+.about-figure img{
+  width:100%; height:100%; object-fit:cover; object-position:center;
+}
+.about-figure .lbl{
+  position:absolute; left:18px; bottom:18px;
+  font-family:var(--f-mono); font-size:10px; letter-spacing:.18em; color:rgba(226,219,204,.7); text-transform:uppercase;
+  background:rgba(24,25,27,.45); padding:8px 12px; border-radius:6px;
+  backdrop-filter: blur(6px);
+}
+.about-figure .badge{
+  position:absolute; right:18px; top:18px;
+  width:112px; height:112px; border-radius:50%;
+  background: var(--orange); color:#fff;
+  display:flex; align-items:center; justify-content:center; flex-direction:column;
+  font-family:var(--f-display); line-height:1;
+  text-align:center;
+  box-shadow: 0 10px 30px rgba(242,166,50,.5);
+  animation: spin 22s linear infinite;
+}
+.about-figure .badge .n{ font-size:36px }
+.about-figure .badge .t{ font-family:var(--f-mono); font-size:9px; letter-spacing:.16em; text-transform:uppercase; margin-top:4px; opacity:.9 }
+@keyframes spin{ to{ transform: rotate(360deg) } }
+
+.about-body h2{ margin-bottom: 30px }
+.about-body p{ font-size:17px; line-height:1.7; color:#2D2C2C; max-width:54ch }
+.about-body .sign{ display:flex; align-items:center; gap:16px; margin-top:34px }
+.about-body .sign .ph{
+  width:54px; height:54px; border-radius:50%;
+  background: linear-gradient(135deg, var(--turq), var(--turq-2));
+  position:relative; overflow:hidden; flex:none;
+}
+.about-body .sign .ph::after{
+  content:"MM"; position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-family:var(--f-display); font-size:20px;
+}
+.about-body .sign .who{ font-size:14px }
+.about-body .sign .who b{ font-weight:600; display:block }
+.about-body .sign .who span{ color:var(--muted); font-size:13px }
+
+.values{ display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-top:44px }
+.value{ padding:22px 0; border-top:1px solid var(--line) }
+.value .n{ font-family:var(--f-mono); font-size:11px; letter-spacing:.18em; color:var(--orange); text-transform:uppercase; margin-bottom:10px }
+.value h4{ font-family:var(--f-display); font-size:22px; margin-bottom:6px }
+.value p{ font-size:14px; color:var(--muted); margin:0; line-height:1.5 }
+
+/* ============ SERVICES ============ */
+.services{ background: var(--ink); color: var(--paper); border-radius: var(--r-xl) var(--r-xl) 0 0; }
+.services .eyebrow{ color: rgba(226,219,204,.55) }
+.services .sec-head .desc{ color: rgba(226,219,204,.75) }
+.services-grid{
+  display:grid;
+  grid-template-columns: repeat(6, 1fr);
+  border-top:1px solid rgba(226,219,204,.12);
+  border-left:1px solid rgba(226,219,204,.12);
+}
+.service{
+  grid-column: span 2;
+  padding: 44px 36px 36px;
+  border-right:1px solid rgba(226,219,204,.12);
+  border-bottom:1px solid rgba(226,219,204,.12);
+  display:flex; flex-direction:column; gap:18px;
+  min-height: 360px;
+  position:relative;
+  transition: background .4s var(--ease);
+}
+.service:hover{ background: rgba(226,219,204,.04) }
+.service .num{ font-family:var(--f-mono); font-size:11px; color: rgba(226,219,204,.45); letter-spacing:.18em }
+.service .icon{
+  width:64px; height:64px; border-radius: 14px;
+  background: rgba(226,219,204,.05); border:1px solid rgba(226,219,204,.12);
+  display:flex; align-items:center; justify-content:center;
+  transition: background .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);
+}
+.service:hover .icon{ background: var(--orange); border-color: var(--orange); transform: rotate(-4deg) scale(1.05) }
+.service .icon svg{ width:28px; height:28px; stroke:var(--paper); fill:none; stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round }
+.service:hover .icon svg{ stroke:#fff }
+.service h3{ font-size: 30px; margin-top: auto }
+.service p{ margin:0; color: rgba(226,219,204,.65); font-size:14.5px; line-height:1.55; max-width:32ch }
+.service .more{
+  position:absolute; right:28px; top:28px;
+  width:34px; height:34px; border-radius:50%; border:1px solid rgba(226,219,204,.18);
+  display:flex; align-items:center; justify-content:center;
+  transition: background .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+}
+.service:hover .more{ background: var(--orange); border-color: var(--orange); transform: rotate(45deg) }
+.service .more::before, .service .more::after{
+  content:""; position:absolute; background:var(--paper);
+}
+.service .more::before{ width:10px; height:1px; }
+.service .more::after{ width:1px; height:10px; }
+
+.services-cta{
+  padding: 60px 36px; grid-column: span 6;
+  border-right:1px solid rgba(226,219,204,.12);
+  border-bottom:1px solid rgba(226,219,204,.12);
+  display:flex; justify-content:space-between; align-items:center; gap:32px; flex-wrap:wrap;
+}
+.services-cta h3{ font-family:var(--f-display); font-size: clamp(24px, 2.4vw, 36px); max-width: 22ch; margin:0; }
+.services-cta .btn-primary{ background: var(--orange) }
+.services-cta .btn-primary:hover{ background: var(--paper); color:var(--ink) }
+
+/* ============ GALLERY (BEFORE/AFTER) ============ */
+.gallery{ background: var(--ink); color: var(--paper); padding-top: 0 }
+.gallery .container{ padding-top: clamp(60px, 8vw, 120px) }
+.ba{
+  position:relative; aspect-ratio: 16 / 9;
+  border-radius: var(--r-lg); overflow:hidden;
+  user-select:none; touch-action:none;
+  box-shadow: 0 30px 80px rgba(0,0,0,.4);
+  margin-bottom: 28px;
+}
+.ba .layer{ position:absolute; inset:0; }
+.ba .after{
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 14px, transparent 14px 28px),
+    linear-gradient(160deg, #E5DDCB, #C9B58A 55%, #8C7332);
+}
+.ba .before{
+  clip-path: inset(0 0 0 0);
+  background:
+    repeating-linear-gradient(135deg, rgba(0,0,0,.07) 0 14px, transparent 14px 28px),
+    linear-gradient(160deg, #3B3833, #1C1B19);
+}
+.ba .layer .tag{
+  position:absolute; top:18px;
+  font-family:var(--f-mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  background:rgba(24,25,27,.55); color:#fff; padding:8px 14px; border-radius:6px; backdrop-filter:blur(6px);
+}
+.ba .after .tag{ right:18px } .ba .before .tag{ left:18px }
+.ba .desc{
+  position:absolute; left:24px; bottom:24px; color:#fff;
+  font-family:var(--f-display); font-size: clamp(22px, 2.4vw, 34px); line-height:1.1;
+  text-shadow: 0 2px 20px rgba(0,0,0,.5);
+}
+.ba .handle{
+  position:absolute; top:0; bottom:0; left:50%; width:2px; background:#fff;
+  transform: translateX(-50%);
+  z-index:3;
+  cursor: ew-resize;
+}
+.ba .handle::before{
+  content:""; position:absolute; left:50%; top:50%;
+  width:52px; height:52px; border-radius:50%;
+  background:#fff; transform:translate(-50%,-50%);
+  box-shadow: 0 6px 20px rgba(0,0,0,.3);
+}
+.ba .handle::after{
+  content:"‹  ›"; position:absolute; left:50%; top:50%;
+  transform: translate(-50%,-50%);
+  font-family:var(--f-mono); font-size:14px; color:var(--ink); letter-spacing:.05em;
+}
+.gallery-thumbs{ display:grid; grid-template-columns: repeat(4, 1fr); gap:16px }
+.thumb{
+  aspect-ratio: 4/3; border-radius: var(--r-md); overflow:hidden;
+  position:relative; cursor:pointer; opacity:.55; transition: opacity .3s var(--ease), transform .3s var(--ease);
+  border: 1px solid rgba(226,219,204,.1);
+}
+.thumb.is-active{ opacity:1; border-color: var(--orange) }
+.thumb:hover{ opacity:1; transform: translateY(-2px) }
+.thumb .img{
+  position:absolute; inset:0;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.08) 0 10px, transparent 10px 20px),
+    linear-gradient(140deg, var(--c1, #2D2C2C), var(--c2, #18191B));
+}
+.thumb .lbl{
+  position:absolute; left:12px; bottom:10px; right:12px;
+  font-family:var(--f-mono); font-size:10px; letter-spacing:.12em; color:#fff; text-transform:uppercase;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.thumb .lbl .n{ opacity:.55 }
+
+/* ============ PROCESS ============ */
+.process{ background: var(--paper-2) }
+.proc-grid{
+  display:grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+  border-top:1px solid var(--line);
+}
+.proc-step{
+  padding: 40px 28px 50px 0;
+  border-right: 1px solid var(--line);
+  display:flex; flex-direction:column; gap:18px;
+  position:relative;
+}
+.proc-step:last-child{ border-right:none }
+.proc-step .n{
+  font-family:var(--f-display); font-size: clamp(60px, 7vw, 110px); line-height:.9; color:var(--ink);
+}
+.proc-step .n em{ color: var(--orange); font-style:normal }
+.proc-step h4{ font-family:var(--f-display); font-size: 26px; margin: 8px 0 6px }
+.proc-step p{ font-size:14px; color:#2D2C2C; margin:0; line-height:1.55; max-width:24ch }
+.proc-step .dur{
+  font-family:var(--f-mono); font-size:10px; letter-spacing:.16em; color:var(--muted); text-transform:uppercase;
+  display:flex; align-items:center; gap:8px;
+}
+.proc-step .dur::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--turq) }
+
+/* ============ TESTIMONIALS ============ */
+.testi{ background: var(--paper) }
+.testi-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px }
+.testi-card{
+  background:#fff; border:1px solid var(--line);
+  border-radius: var(--r-lg); padding: 34px 30px;
+  display:flex; flex-direction:column; gap: 22px;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+  position:relative;
+}
+.testi-card:hover{ transform: translateY(-4px); box-shadow: 0 30px 60px -30px rgba(24,25,27,.18) }
+.testi-card .stars{ display:flex; gap:3px; color:var(--orange) }
+.testi-card .stars svg{ width:16px; height:16px; fill:currentColor }
+.testi-card blockquote{
+  margin:0; font-family:var(--f-display); font-size: 22px; line-height:1.3;
+}
+.testi-card blockquote::before{
+  content: "\201C"; font-family:var(--f-display); font-size:60px; line-height:0; color:var(--orange);
+  position:absolute; top:46px; left:18px; opacity:.15;
+}
+.testi-card .who{ display:flex; align-items:center; gap:14px; margin-top:auto; padding-top: 18px; border-top:1px solid var(--line-2) }
+.testi-card .who .av{
+  width:44px; height:44px; border-radius:50%; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-family:var(--f-display); font-size:18px;
+}
+.testi-card .who b{ font-size:14px; font-weight:600; display:block }
+.testi-card .who span{ font-size:12px; color:var(--muted); font-family:var(--f-mono); letter-spacing:.05em; text-transform:uppercase }
+
+/* ============ WHY ============ */
+.why{
+  background: var(--paper);
+  position:relative;
+}
+.why-grid{ display:grid; grid-template-columns: 1.2fr 1fr; gap: clamp(40px, 6vw, 100px); align-items:start }
+.why-left h2 .hl{
+  display:inline-block; position:relative;
+}
+.why-left h2 .hl::after{
+  content:""; position:absolute; left:-4px; right:-4px; bottom:6px; height:18px;
+  background: var(--turq); opacity:.4; z-index:-1; border-radius: 2px;
+}
+.why-left .lead{ margin-top: 30px }
+.why-left .signature{
+  margin-top:40px; padding: 26px; border:1px solid var(--line); border-radius: var(--r-lg);
+  background: var(--paper-2);
+  display:flex; align-items:center; gap:18px;
+}
+.why-left .signature .icn{
+  width:54px; height:54px; border-radius:50%;
+  background:var(--ink); color:var(--paper);
+  display:flex; align-items:center; justify-content:center; flex:none;
+}
+.why-left .signature .icn svg{ width:22px; height:22px; stroke:currentColor; stroke-width:1.4; fill:none }
+.why-left .signature b{ display:block; font-size:15px; margin-bottom:2px }
+.why-left .signature span{ font-size:13px; color:var(--muted) }
+
+.why-list{ list-style:none; padding:0; margin:0 }
+.why-list li{
+  display:grid; grid-template-columns: 64px 1fr; gap: 22px;
+  padding: 28px 0;
+  border-top:1px solid var(--line);
+}
+.why-list li:last-child{ border-bottom:1px solid var(--line) }
+.why-list .num{ font-family:var(--f-mono); font-size:12px; letter-spacing:.18em; color:var(--orange); padding-top:6px }
+.why-list h4{ font-family:var(--f-display); font-size: 26px; margin: 0 0 6px }
+.why-list p{ margin:0; font-size:15px; color:#2D2C2C; line-height:1.55; max-width:46ch }
+
+/* ============ CONTACT ============ */
+.contact{
+  background: var(--ink); color:var(--paper);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  position:relative; overflow:hidden;
+}
+.contact::before{
+  content:""; position:absolute; right:-160px; top:-160px;
+  width:520px; height:520px; border-radius:50%;
+  background: radial-gradient(circle at 35% 35%, #FFC36A, var(--orange) 55%, var(--orange-2));
+  opacity:.7;
+}
+.contact .eyebrow{ color: rgba(226,219,204,.55) }
+.contact-grid{ display:grid; grid-template-columns: 1fr 1.1fr; gap: clamp(40px, 6vw, 100px); align-items:start; position:relative; z-index:2 }
+.contact-left h2{ max-width: 14ch; margin-bottom: 28px }
+.contact-left .lead{ color: rgba(226,219,204,.75); max-width: 40ch }
+.contact-info{ margin-top: 40px; display:flex; flex-direction:column; gap: 20px }
+.contact-info .row{
+  display:grid; grid-template-columns: 130px 1fr; gap: 20px;
+  padding: 18px 0; border-top: 1px solid rgba(226,219,204,.12);
+  align-items:center;
+}
+.contact-info .row:last-child{ border-bottom: 1px solid rgba(226,219,204,.12) }
+.contact-info .lbl{ font-family:var(--f-mono); font-size:11px; letter-spacing:.16em; color: rgba(226,219,204,.5); text-transform:uppercase }
+.contact-info .val{ font-family:var(--f-display); font-size: 22px; }
+.contact-info .val a:hover{ color: var(--orange) }
+
+.form{
+  background: rgba(226,219,204,.04);
+  border: 1px solid rgba(226,219,204,.12);
+  border-radius: var(--r-lg);
+  padding: clamp(28px, 3vw, 44px);
+  display:grid; grid-template-columns: 1fr 1fr; gap: 24px 20px;
+  backdrop-filter: blur(6px);
+}
+.form .full{ grid-column: 1 / -1 }
+.field{ display:flex; flex-direction:column; gap:8px }
+.field label{
+  font-family:var(--f-mono); font-size:10px; letter-spacing:.16em; color: rgba(226,219,204,.55); text-transform:uppercase;
+}
+.field input, .field textarea, .field select{
+  background: transparent; border: none; border-bottom: 1px solid rgba(226,219,204,.2);
+  padding: 14px 0 12px 0; font-size: 16px; color: var(--paper);
+  outline: none; transition: border-color .25s var(--ease);
+  font-family: inherit;
+}
+.field select{ -webkit-appearance:none; appearance:none; background-image: linear-gradient(45deg, transparent 50%, var(--paper) 50%), linear-gradient(135deg, var(--paper) 50%, transparent 50%); background-position: calc(100% - 14px) 50%, calc(100% - 8px) 50%; background-size: 6px 6px; background-repeat:no-repeat; padding-right:30px}
+.field select option{ background:var(--ink); color:var(--paper) }
+.field textarea{ min-height: 110px; resize:vertical; line-height:1.5 }
+.field input:focus, .field textarea:focus, .field select:focus{ border-bottom-color: var(--orange) }
+.field input::placeholder, .field textarea::placeholder{ color: rgba(226,219,204,.35) }
+.field.error input, .field.error textarea, .field.error select{ border-bottom-color: #ff7a59 }
+.field .err-msg{ font-family:var(--f-mono); font-size:10px; color:#ff7a59; letter-spacing:.05em; display:none }
+.field.error .err-msg{ display:block }
+.form .submit-row{
+  grid-column: 1 / -1;
+  display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
+  padding-top: 10px;
+}
+.form .submit-row .nb{ font-size:12px; color:rgba(226,219,204,.5); max-width: 40ch }
+.form .btn-submit{
+  background: var(--orange); color:#fff;
+  padding: 20px 30px; border-radius: 999px;
+  font-size: 15px; font-weight: 500;
+  display:inline-flex; align-items:center; gap:14px;
+  cursor:pointer;
+  transition: background .25s var(--ease), transform .25s var(--ease);
+}
+.form .btn-submit:hover{ background: var(--paper); color: var(--ink); transform: translateY(-2px) }
+.form-success{
+  grid-column:1/-1;
+  display:none;
+  text-align:center; padding: 40px 20px;
+}
+.form-success.is-shown{ display:block }
+.form-success .ic{
+  width:70px; height:70px; border-radius:50%; background:var(--turq); color:var(--ink);
+  display:flex; align-items:center; justify-content:center; margin:0 auto 20px;
+  font-family:var(--f-display); font-size:32px;
+}
+.form-success h3{ font-family:var(--f-display); font-size:32px; margin-bottom:10px }
+.form-success p{ color:rgba(226,219,204,.7) }
+
+/* checkbox */
+.check{ display:flex; gap:12px; align-items:flex-start; font-size: 13px; color: rgba(226,219,204,.65); cursor:pointer }
+.check input{ position:absolute; opacity:0; pointer-events:none }
+.check .box{
+  width:18px; height:18px; border-radius:4px; border:1px solid rgba(226,219,204,.3);
+  flex:none; position:relative; margin-top:1px;
+  transition: background .2s var(--ease), border-color .2s var(--ease);
+}
+.check input:checked + .box{ background: var(--orange); border-color: var(--orange) }
+.check input:checked + .box::after{
+  content:""; position:absolute; left:5px; top:1.5px; width:5px; height:10px;
+  border-right:1.5px solid #fff; border-bottom:1.5px solid #fff; transform: rotate(45deg);
+}
+
+/* ============ FOOTER ============ */
+.footer{ background: var(--ink); color: var(--paper); padding: 80px 0 36px }
+.footer-grid{
+  display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px;
+  padding-bottom: 60px; border-bottom: 1px solid rgba(226,219,204,.12);
+}
+.footer .brand{ color: var(--paper); font-size: 28px; }
+.footer .brand b{ color: var(--paper) }
+.footer-col h5{
+  font-family:var(--f-mono); font-size: 11px; letter-spacing:.18em; text-transform:uppercase;
+  color: rgba(226,219,204,.5); margin: 0 0 22px;
+}
+.footer-col ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px }
+.footer-col a{ font-size:14.5px; color: rgba(226,219,204,.75); transition: color .2s var(--ease) }
+.footer-col a:hover{ color: var(--orange) }
+.footer-bottom{
+  padding-top: 28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;
+  font-family:var(--f-mono); font-size: 11px; letter-spacing:.12em; text-transform:uppercase;
+  color: rgba(226,219,204,.5);
+}
+.footer-bottom .socials{ display:flex; gap:10px }
+.footer-bottom .socials a{
+  width:36px; height:36px; border:1px solid rgba(226,219,204,.2); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  transition: background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+}
+.footer-bottom .socials a:hover{ background: var(--orange); border-color: var(--orange); color:#fff }
+.footer-bottom .socials svg{ width:16px; height:16px; fill:currentColor }
+
+/* sticky devis button - mobile */
+.sticky-cta{
+  display:none;
+  position:fixed; right:18px; bottom:18px; z-index:60;
+  padding: 14px 20px; border-radius: 999px;
+  background:var(--orange); color:#fff;
+  box-shadow: 0 10px 30px rgba(242,166,50,.45);
+  font-size: 14px; font-weight:500;
+}
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal{ transition: opacity .9s var(--ease), transform .9s var(--ease) }
+.js-reveal .reveal{ opacity:0; transform: translateY(28px) }
+.js-reveal .reveal.is-in{ opacity:1; transform: none }
+.reveal.delay-1{ transition-delay:.08s }
+.reveal.delay-2{ transition-delay:.16s }
+.reveal.delay-3{ transition-delay:.24s }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1080px){
+  .hero-grid{ grid-template-columns: 1fr; gap: 40px }
+  .hero-right{ align-items: flex-start }
+  .hero-foot{ grid-template-columns: 1fr 1fr }
+  .hero-foot > div{ border-bottom: 1px solid var(--line-2); padding-bottom: 20px; margin-bottom: 10px }
+  .sec-head{ grid-template-columns: 1fr; gap: 20px }
+  .about-grid{ grid-template-columns: 1fr }
+  .about-figure{ aspect-ratio: 4/3; max-height: 480px }
+  .services-grid{ grid-template-columns: repeat(2, 1fr) }
+  .service{ grid-column: span 1 }
+  .services-cta{ grid-column: span 2 }
+  .gallery-thumbs{ grid-template-columns: repeat(2, 1fr) }
+  .proc-grid{ grid-template-columns: 1fr 1fr }
+  .proc-step{ border-bottom: 1px solid var(--line); padding-right: 28px; padding-left: 0 }
+  .testi-grid{ grid-template-columns: 1fr }
+  .why-grid{ grid-template-columns: 1fr }
+  .contact-grid{ grid-template-columns: 1fr }
+  .footer-grid{ grid-template-columns: 1fr 1fr; gap: 40px }
+  .form{ grid-template-columns: 1fr }
+  .hero::before{ width:340px; height:340px; right:-100px; top:80px }
+}
+@media (max-width: 680px){
+  body{ font-size: 16px }
+  .nav-links{ display:none }
+  .nav-cta{ display:none }
+  .burger{ display:flex }
+  .sticky-cta{ display:inline-flex; align-items:center; gap:8px }
+  .hero{ padding-top: 100px }
+  .hero h1 .pic{ width: 84px; height: 48px }
+  .hero-foot{ grid-template-columns: 1fr 1fr; gap: 20px }
+  .services-grid{ grid-template-columns: 1fr }
+  .service{ min-height: auto; padding: 36px 26px }
+  .services-cta{ grid-column: span 1; padding: 40px 26px }
+  .gallery-thumbs{ grid-template-columns: 1fr 1fr }
+  .proc-grid{ grid-template-columns: 1fr }
+  .footer-grid{ grid-template-columns: 1fr }
+  .ba .desc{ font-size: 16px; bottom: 16px; left: 16px; right: 16px }
+  .about-figure .badge{ width:84px; height:84px }
+  .about-figure .badge .n{ font-size:26px }
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.001ms !important; transition-duration:.001ms !important; scroll-behavior:auto !important }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand" aria-label="Mouss'ART — accueil">
+    <img src="uploads/Logo.jpeg" alt="Mouss'ART logo" class="logo-img" />
+    <span><b>Mouss</b><i>'</i><b>ART</b></span>
+  </a>
+  <nav class="nav-links" aria-label="Navigation principale">
+    <a href="#about">L'atelier</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Réalisations</a>
+    <a href="#process">Méthode</a>
+    <a href="#testi">Avis</a>
+  </nav>
+  <a href="#contact" class="nav-cta">
+    <span class="dot" aria-hidden="true"></span>
+    Devis gratuit
+  </a>
+  <button class="burger" aria-label="Menu"><span></span></button>
+</header>
+
+<a href="#contact" class="sticky-cta">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+  Devis
+</a>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-meta reveal">
+      <span class="pill"><span class="d"></span> Artisan peintre · Marseille &amp; alentours</span>
+      <span class="pill">Depuis 2014 · 480+ chantiers livrés</span>
+    </div>
+    <div class="hero-grid">
+      <h1 class="reveal delay-1">
+        <span class="row">L'art de <em class="italic">rénover</em></span>
+        <span class="row">votre intérieur, <span class="pic"><img src="uploads/Logo.jpeg" alt="" aria-hidden="true" /></span></span>
+        <span class="row">jusqu'au <em class="italic">dernier détail.</em></span>
+      </h1>
+      <div class="hero-right reveal delay-2">
+        <p class="lead">
+          Peinture, carrelage, parquet, sols PVC et finitions sur-mesure. Mouss'ART accompagne particuliers,
+          syndics et commerces marseillais dans des rénovations propres, ponctuelles et exécutées avec exigence.
+        </p>
+        <div class="cta-row">
+          <a href="#contact" class="btn btn-primary">Recevoir mon devis <span class="arrow"></span></a>
+          <a href="#gallery" class="btn btn-ghost">Voir les réalisations</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-foot reveal delay-3">
+      <div>
+        <div class="k"><em>12</em> ans</div>
+        <span class="l">D'expérience sur chantiers marseillais</span>
+      </div>
+      <div>
+        <div class="k">480<em>+</em></div>
+        <span class="l">Intérieurs rénovés, particuliers &amp; pros</span>
+      </div>
+      <div>
+        <div class="k">4,9<em>/5</em></div>
+        <span class="l">Note moyenne · 127 avis vérifiés</span>
+      </div>
+      <div>
+        <div class="k">24<em>h</em></div>
+        <span class="l">Devis détaillé envoyé après visite</span>
+      </div>
+    </div>
+    <div class="ticker reveal" aria-hidden="true">
+      <div class="ticker-track" id="ticker"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">L'atelier</span>
+        <h2>Un savoir‑faire <em class="italic">artisanal</em>, une exigence d'agence.</h2>
+      </div>
+      <div>
+        <p class="desc">
+          Mouss'ART est né d'une conviction simple : <em>un beau chantier commence par un chantier propre.</em>
+          Depuis Marseille, nous prenons en charge la rénovation intérieure de A à Z — de la prise de cotes
+          jusqu'à la dernière retouche — avec une équipe stable, des matériaux soigneusement sélectionnés
+          et le respect absolu des délais que nous vous annonçons.
+        </p>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-figure reveal">
+        <img src="uploads/Logo.jpeg" alt="Mouss'ART — logo et identité visuelle" />
+        <span class="lbl">Mouss'ART · Marseille depuis 2014</span>
+        <div class="badge">
+          <span class="n">12</span>
+          <span class="t">Ans d'expérience</span>
+        </div>
+      </div>
+      <div class="about-body reveal delay-1">
+        <h3 style="font-size:38px; margin-bottom:24px">Une équipe, un chef de chantier, un interlocuteur unique.</h3>
+        <p>
+          Trop d'artisans sous-traitent, multiplient les intervenants et brouillent les responsabilités.
+          Chez Mouss'ART, votre projet est piloté par un seul référent qui connaît le chantier dans le détail,
+          coordonne les corps de métier et vous tient informé chaque semaine de l'avancée.
+        </p>
+        <p>
+          Notre signature, c'est la <strong>finition</strong> : des bandes nettes, des angles francs,
+          des plinthes droites au millimètre. Le travail n'est pas livré tant qu'il n'a pas passé notre
+          propre contrôle qualité — celui qu'on appliquerait chez nous.
+        </p>
+        <div class="sign">
+          <div class="ph" aria-hidden="true"></div>
+          <div class="who">
+            <b>Mouss Mansouri</b>
+            <span>Fondateur · Chef d'atelier</span>
+          </div>
+        </div>
+
+        <div class="values">
+          <div class="value">
+            <div class="n">01 — Engagement</div>
+            <h4>Prix annoncé, prix tenu</h4>
+            <p>Devis détaillé, ligne par ligne. Aucune surprise en cours de chantier.</p>
+          </div>
+          <div class="value">
+            <div class="n">02 — Propreté</div>
+            <h4>Chantier protégé chaque soir</h4>
+            <p>Sols bâchés, meubles filmés, poussière aspirée. Vous rentrez chez vous, pas sur un chantier.</p>
+          </div>
+          <div class="value">
+            <div class="n">03 — Garantie</div>
+            <h4>Décennale &amp; assurance pro</h4>
+            <p>SIRET, RC pro, garantie décennale. Vos travaux sont couverts en bonne et due forme.</p>
+          </div>
+          <div class="value">
+            <div class="n">04 — Local</div>
+            <h4>Basés à Marseille</h4>
+            <p>Du 1er au 16e, plus métropole AMP. Interventions rapides, déplacements compris.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section services" id="services">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Services</span>
+        <h2>Tout ce qu'il faut pour rénover un intérieur <em class="italic">de bout en bout.</em></h2>
+      </div>
+      <div>
+        <p class="desc">
+          Murs, sols, plafonds, finitions : nous regroupons sous un seul toit les métiers qui composent
+          une rénovation intérieure réussie. Vous n'avez plus à coordonner trois entreprises — nous le faisons pour vous.
+        </p>
+      </div>
+    </div>
+
+    <div class="services-grid reveal">
+      <article class="service">
+        <span class="num">01</span>
+        <span class="more" aria-hidden="true"></span>
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 4h12v6H4z"/><path d="M16 7h4v3l-4 2"/><path d="M10 10v4"/><path d="M6 14h8v6H6z"/></svg>
+        </span>
+        <h3>Peinture intérieure</h3>
+        <p>Murs, plafonds, boiseries. Préparation des supports, peintures haut de gamme mates, satinées ou velours.</p>
+      </article>
+
+      <article class="service">
+        <span class="num">02</span>
+        <span class="more" aria-hidden="true"></span>
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg>
+        </span>
+        <h3>Carrelage</h3>
+        <p>Pose droite, diagonale, chevron. Grès cérame, faïence, terrazzo. Salle de bain, cuisine et pièces à vivre.</p>
+      </article>
+
+      <article class="service">
+        <span class="num">03</span>
+        <span class="more" aria-hidden="true"></span>
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 5h18v14H3z"/><path d="M3 9h18"/><path d="M3 13h18"/><path d="M3 17h18"/><path d="M8 5v14"/><path d="M14 5v14"/></svg>
+        </span>
+        <h3>Parquet &amp; stratifié</h3>
+        <p>Massif, contrecollé, stratifié. Pose collée ou flottante, ponçage et vitrification de parquets anciens.</p>
+      </article>
+
+      <article class="service">
+        <span class="num">04</span>
+        <span class="more" aria-hidden="true"></span>
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9c4 0 4 6 8 6s4-6 8-6"/></svg>
+        </span>
+        <h3>Sols PVC &amp; LVT</h3>
+        <p>Lames et dalles vinyle haute densité. Idéal pièces humides, locaux commerciaux et rénovation rapide.</p>
+      </article>
+
+      <article class="service">
+        <span class="num">05</span>
+        <span class="more" aria-hidden="true"></span>
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 20l8-16 8 16"/><path d="M7 14h10"/></svg>
+        </span>
+        <h3>Rénovation complète</h3>
+        <p>Pilotage global : démolition, plâtrerie, plomberie, électricité, finitions. Un seul devis, un seul interlocuteur.</p>
+      </article>
+
+      <article class="service">
+        <span class="num">06</span>
+        <span class="more" aria-hidden="true"></span>
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+        </span>
+        <h3>Finitions premium</h3>
+        <p>Béton ciré, enduit décoratif, peinture à la chaux, papier peint panoramique. Le détail qui change tout.</p>
+      </article>
+
+      <div class="services-cta">
+        <h3>Un projet précis en tête ? <em class="italic">Parlons-en sur place.</em></h3>
+        <a href="#contact" class="btn btn-primary">Prendre rendez-vous <span class="arrow"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="section gallery" id="gallery">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Avant / après</span>
+        <h2>Quand l'<em class="italic">avant</em> ne ressemble plus à l'<em class="italic">après.</em></h2>
+      </div>
+      <div>
+        <p class="desc">
+          Glissez le curseur pour comparer. Quelques chantiers récents — appartements haussmanniens du
+          6e, T3 au Roucas-Blanc, boutique de prêt-à-porter rue Paradis. Aucune retouche, aucun filtre.
+        </p>
+      </div>
+    </div>
+
+    <div class="ba reveal" id="ba" role="figure" aria-label="Comparaison avant / après">
+      <div class="layer after" id="ba-after">
+        <span class="tag">Après</span>
+      </div>
+      <div class="layer before" id="ba-before">
+        <span class="tag">Avant</span>
+      </div>
+      <div class="desc" id="ba-desc">Appartement T3 · Le Roucas-Blanc · 78 m²</div>
+      <div class="handle" id="ba-handle" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Curseur avant/après"></div>
+    </div>
+
+    <div class="gallery-thumbs reveal delay-1" id="thumbs">
+      <button class="thumb is-active" data-i="0" data-desc="Appartement T3 · Le Roucas-Blanc · 78 m²" style="--c1:#E5DDCB; --c2:#8C7332">
+        <span class="img"></span>
+        <span class="lbl"><span>Salon · 78m²</span><span class="n">01</span></span>
+      </button>
+      <button class="thumb" data-i="1" data-desc="Haussmannien · 6ème arr. · 110 m²" style="--c1:#75C4D0; --c2:#3F8A99">
+        <span class="img"></span>
+        <span class="lbl"><span>Cuisine ouverte</span><span class="n">02</span></span>
+      </button>
+      <button class="thumb" data-i="2" data-desc="Boutique · Rue Paradis · 60 m²" style="--c1:#F2A632; --c2:#8C5510">
+        <span class="img"></span>
+        <span class="lbl"><span>Local commercial</span><span class="n">03</span></span>
+      </button>
+      <button class="thumb" data-i="3" data-desc="Salle de bain · Castellane · 9 m²" style="--c1:#D5CDBE; --c2:#2D2C2C">
+        <span class="img"></span>
+        <span class="lbl"><span>Salle de bain</span><span class="n">04</span></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="section process" id="process">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Notre méthode</span>
+        <h2>Cinq étapes, <em class="italic">zéro surprise.</em></h2>
+      </div>
+      <div>
+        <p class="desc">
+          Un chantier réussi tient à un protocole clair. Voici exactement comment nous travaillons,
+          du premier appel à la remise des clés — avec les délais que vous pouvez nous opposer.
+        </p>
+      </div>
+    </div>
+
+    <div class="proc-grid reveal">
+      <div class="proc-step">
+        <span class="dur">Jour 0 — 48h</span>
+        <div class="n">0<em>1</em></div>
+        <h4>Échange &amp; visite</h4>
+        <p>Appel d'écoute, puis visite sur place pour comprendre vos usages, vos contraintes et vos goûts.</p>
+      </div>
+      <div class="proc-step">
+        <span class="dur">Sous 24h</span>
+        <div class="n">0<em>2</em></div>
+        <h4>Devis détaillé</h4>
+        <p>Chiffrage ligne par ligne, matériaux compris. Vous savez exactement ce que vous payez et pourquoi.</p>
+      </div>
+      <div class="proc-step">
+        <span class="dur">J-7 avant chantier</span>
+        <div class="n">0<em>3</em></div>
+        <h4>Préparation</h4>
+        <p>Protection des sols, masquage des meubles, commande des matériaux. On installe avant de toucher à un mur.</p>
+      </div>
+      <div class="proc-step">
+        <span class="dur">Délai annoncé</span>
+        <div class="n">0<em>4</em></div>
+        <h4>Réalisation</h4>
+        <p>Une équipe stable sur votre chantier. Point d'avancement chaque semaine, photos à l'appui.</p>
+      </div>
+      <div class="proc-step">
+        <span class="dur">Livraison</span>
+        <div class="n">0<em>5</em></div>
+        <h4>Finitions &amp; remise</h4>
+        <p>Contrôle qualité ensemble, retouches immédiates, nettoyage final. Vous récupérez un intérieur prêt à vivre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section testi" id="testi">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Avis clients</span>
+        <h2>Ils nous ont confié <em class="italic">leurs murs.</em></h2>
+      </div>
+      <div>
+        <p class="desc">
+          127 avis vérifiés, une moyenne de 4,9/5 sur Google et Houzz. Quelques extraits — pour le reste,
+          demandez-nous des références dans votre quartier, nous en avons.
+        </p>
+      </div>
+    </div>
+
+    <div class="testi-grid reveal">
+      <article class="testi-card">
+        <div class="stars" aria-label="5 étoiles sur 5">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+        </div>
+        <blockquote>Travail soigné, équipe ponctuelle, finitions impeccables. Notre salon est méconnaissable et le chantier a été rendu nickel chaque soir.</blockquote>
+        <div class="who">
+          <div class="av" style="background:#F2A632">CR</div>
+          <div>
+            <b>Camille R.</b>
+            <span>Appartement · Marseille 7ᵉ</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="testi-card">
+        <div class="stars" aria-label="5 étoiles sur 5">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+        </div>
+        <blockquote>Devis clair, prix tenu au centime près. Mouss a su nous conseiller sur les matériaux sans nous pousser à la dépense. Du vrai professionnalisme.</blockquote>
+        <div class="who">
+          <div class="av" style="background:#5AA6B6; color:#18191B">TL</div>
+          <div>
+            <b>Thomas &amp; Léa</b>
+            <span>Rénovation T4 · Le Panier</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="testi-card">
+        <div class="stars" aria-label="5 étoiles sur 5">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+        </div>
+        <blockquote>Nous faisons appel à Mouss'ART pour nos locations meublées : rapides, fiables, et le rendu est toujours au-dessus des standards du marché.</blockquote>
+        <div class="who">
+          <div class="av" style="background:#2D2C2C">NS</div>
+          <div>
+            <b>Nadia S.</b>
+            <span>Agence immobilière · Castellane</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="section why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-left reveal">
+        <span class="eyebrow">Pourquoi Mouss'ART</span>
+        <h2 style="margin-top:24px">Choisir un artisan, c'est choisir <span class="hl">la tranquillité.</span></h2>
+        <p class="lead">
+          Nous savons à quel point un chantier peut virer au cauchemar : retards, surcoûts, finitions bâclées,
+          poussière partout. Notre métier, c'est précisément l'inverse de tout ça.
+        </p>
+        <div class="signature">
+          <div class="icn" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          </div>
+          <div>
+            <b>4,9 / 5 sur 127 avis vérifiés</b>
+            <span>Google · Houzz · Pages Jaunes</span>
+          </div>
+        </div>
+      </div>
+
+      <ul class="why-list reveal delay-1">
+        <li>
+          <span class="num">01</span>
+          <div>
+            <h4>Réactivité réelle</h4>
+            <p>Réponse sous 24h ouvrées, visite planifiée dans la semaine, devis envoyé le lendemain.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <div>
+            <h4>Qualité du geste</h4>
+            <p>Équipe en interne, pas de sous-traitance opaque. Chaque finition passe un contrôle visuel et tactile.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <div>
+            <h4>Chantier propre</h4>
+            <p>Protections complètes, nettoyage quotidien, aspirateur à filtre HEPA. Vous gardez votre intérieur.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">04</span>
+          <div>
+            <h4>Finitions premium</h4>
+            <p>Bandes droites, angles parfaits, plinthes alignées. Le détail que les yeux exercés remarquent.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">05</span>
+          <div>
+            <h4>Accompagnement humain</h4>
+            <p>Un seul interlocuteur, un point d'étape chaque semaine, un SAV qui répond après livraison.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <span class="eyebrow">Demande de devis</span>
+        <h2 style="margin-top:24px">Parlez-nous de votre <em class="italic">projet.</em></h2>
+        <p class="lead">
+          Décrivez en quelques lignes ce que vous souhaitez transformer. Nous revenons vers vous sous
+          24h ouvrées avec un créneau de visite — gratuit et sans engagement.
+        </p>
+
+        <div class="contact-info">
+          <div class="row">
+            <span class="lbl">Téléphone</span>
+            <span class="val"><a href="tel:+33491000000">04 91 00 00 00</a></span>
+          </div>
+          <div class="row">
+            <span class="lbl">E‑mail</span>
+            <span class="val"><a href="mailto:contact@mouss-art.fr">contact@mouss-art.fr</a></span>
+          </div>
+          <div class="row">
+            <span class="lbl">Atelier</span>
+            <span class="val">Marseille 8ᵉ — sur rendez-vous</span>
+          </div>
+          <div class="row">
+            <span class="lbl">Horaires</span>
+            <span class="val">Lun – Sam · 8h – 19h</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="form reveal delay-1" id="devis-form" novalidate>
+        <div class="field">
+          <label for="f-prenom">Prénom</label>
+          <input id="f-prenom" name="prenom" type="text" placeholder="Camille" required />
+          <span class="err-msg">Merci d'indiquer votre prénom.</span>
+        </div>
+        <div class="field">
+          <label for="f-nom">Nom</label>
+          <input id="f-nom" name="nom" type="text" placeholder="Roux" required />
+          <span class="err-msg">Merci d'indiquer votre nom.</span>
+        </div>
+        <div class="field">
+          <label for="f-email">E‑mail</label>
+          <input id="f-email" name="email" type="email" placeholder="camille@exemple.fr" required />
+          <span class="err-msg">Adresse e‑mail invalide.</span>
+        </div>
+        <div class="field">
+          <label for="f-tel">Téléphone</label>
+          <input id="f-tel" name="tel" type="tel" placeholder="06 12 34 56 78" required />
+          <span class="err-msg">Merci d'indiquer un numéro joignable.</span>
+        </div>
+        <div class="field">
+          <label for="f-service">Type de projet</label>
+          <select id="f-service" name="service" required>
+            <option value="">Sélectionner —</option>
+            <option>Peinture intérieure</option>
+            <option>Carrelage</option>
+            <option>Parquet / stratifié</option>
+            <option>Sols PVC / LVT</option>
+            <option>Rénovation complète</option>
+            <option>Finitions premium</option>
+            <option>Autre / je ne sais pas encore</option>
+          </select>
+          <span class="err-msg">Merci de choisir un type de projet.</span>
+        </div>
+        <div class="field">
+          <label for="f-surface">Surface concernée</label>
+          <select id="f-surface" name="surface">
+            <option value="">À titre indicatif —</option>
+            <option>Moins de 30 m²</option>
+            <option>30 – 60 m²</option>
+            <option>60 – 100 m²</option>
+            <option>Plus de 100 m²</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="f-msg">Votre message</label>
+          <textarea id="f-msg" name="message" placeholder="Quelques mots sur votre projet : pièces concernées, délai souhaité, particularités…" required></textarea>
+          <span class="err-msg">Merci de nous décrire votre projet en quelques mots.</span>
+        </div>
+        <div class="full">
+          <label class="check">
+            <input type="checkbox" id="f-rgpd" required />
+            <span class="box" aria-hidden="true"></span>
+            <span>J'accepte que mes données soient utilisées pour me recontacter au sujet de mon projet de rénovation. Aucune diffusion à des tiers.</span>
+          </label>
+        </div>
+
+        <div class="submit-row">
+          <span class="nb">Réponse sous 24h ouvrées · Devis gratuit et sans engagement</span>
+          <button type="submit" class="btn-submit">Envoyer ma demande <span class="arrow"></span></button>
+        </div>
+
+        <div class="form-success" id="form-success" aria-live="polite">
+          <div class="ic">✓</div>
+          <h3>Merci, votre demande est partie.</h3>
+          <p>Nous revenons vers vous sous 24h ouvrées pour caler une visite. À très vite.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#top" class="brand">
+          <img src="uploads/Logo.jpeg" alt="Mouss'ART logo" class="logo-img" />
+          <span><b>Mouss</b><i style="color:var(--orange)">'</i><b>ART</b></span>
+        </a>
+        <p style="color:rgba(226,219,204,.6); margin-top:22px; max-width:34ch; font-size:14.5px; line-height:1.6">
+          Peinture &amp; rénovation intérieure haut de gamme à Marseille. Artisans depuis 2014,
+          garantie décennale, devis sous 24h.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Peinture intérieure</a></li>
+          <li><a href="#services">Carrelage</a></li>
+          <li><a href="#services">Parquet &amp; stratifié</a></li>
+          <li><a href="#services">Sols PVC</a></li>
+          <li><a href="#services">Rénovation complète</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Entreprise</h5>
+        <ul>
+          <li><a href="#about">L'atelier</a></li>
+          <li><a href="#process">Notre méthode</a></li>
+          <li><a href="#gallery">Réalisations</a></li>
+          <li><a href="#testi">Avis clients</a></li>
+          <li><a href="#contact">Nous contacter</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+33491000000">04 91 00 00 00</a></li>
+          <li><a href="mailto:contact@mouss-art.fr">contact@mouss-art.fr</a></li>
+          <li>Marseille 8ᵉ — sur RDV</li>
+          <li>SIRET 000 000 000 00000</li>
+          <li>Décennale n° 0000000</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Mouss'ART · Tous droits réservés</span>
+      <div class="socials" aria-label="Réseaux sociaux">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2 0 1.9.3 2.3.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.5.4 1.1.4 2.3.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c0 1.2-.3 1.9-.4 2.3-.2.6-.5 1-.9 1.4s-.8.7-1.4.9c-.5.2-1.1.4-2.3.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2 0-1.9-.3-2.3-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.5-.4-1.1-.4-2.3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c0-1.2.3-1.9.4-2.3.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.5-.2 1.1-.4 2.3-.4 1.2-.1 1.6-.1 4.7-.1Zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1 0-1.7.2-2.1.4-.5.2-.9.5-1.3.9-.4.4-.6.7-.9 1.3-.2.4-.4 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c0 1.1.2 1.7.4 2.1.2.5.5.9.9 1.3.4.4.7.6 1.3.9.4.2 1 .4 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1 0 1.7-.2 2.1-.4.5-.2.9-.5 1.3-.9.4-.4.6-.7.9-1.3.2-.4.4-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c0-1.1-.2-1.7-.4-2.1-.2-.5-.5-.9-.9-1.3-.4-.4-.7-.6-1.3-.9-.4-.2-1-.4-2.1-.4-1.2-.1-1.6-.1-4.7-.1Zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.1-2a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0Z"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8.4h2.8l.4-3.3h-3.2V7.2c0-.9.3-1.6 1.6-1.6h1.7V2.7c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.1v2.6H7.5v3.3h2.8V21h3.2Z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM3 9.5h4V21H3V9.5Zm6.5 0H13v1.6h.1c.5-.9 1.7-1.9 3.5-1.9 3.7 0 4.4 2.5 4.4 5.7V21h-4v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4V9.5Z"/></svg></a>
+      </div>
+      <span>Conçu avec soin · Marseille</span>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+/* ============ NAV SCROLL ============ */
+const nav = document.getElementById('nav');
+const onScroll = () => {
+  if(window.scrollY > 20) nav.classList.add('is-scrolled'); else nav.classList.remove('is-scrolled');
+};
+window.addEventListener('scroll', onScroll, { passive:true });
+onScroll();
+
+/* ============ TICKER ============ */
+const tickerItems = [
+  'Peinture intérieure', 'Carrelage', 'Parquet', 'Sols PVC',
+  'Béton ciré', 'Enduit décoratif', 'Rénovation complète',
+  'Marseille & alentours', 'Garantie décennale', 'Devis sous 24h'
+];
+const ticker = document.getElementById('ticker');
+const build = () => tickerItems.map(t => `<span>${t}</span><span class="dot"></span>`).join('');
+ticker.innerHTML = build() + build();
+
+/* ============ REVEAL ON SCROLL ============ */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js-reveal');
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -10% 0px' });
+  els.forEach(el => io.observe(el));
+  const revealIfVisible = () => {
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    els.forEach(el => {
+      if(el.classList.contains('is-in')) return;
+      const r = el.getBoundingClientRect();
+      if(r.top < vh * 0.92 && r.bottom > 0) el.classList.add('is-in');
+    });
+  };
+  requestAnimationFrame(() => requestAnimationFrame(revealIfVisible));
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.is-in)').forEach(el => el.classList.add('is-in'));
+  }, 1400);
+})();
+
+/* ============ BEFORE / AFTER SLIDER ============ */
+const ba     = document.getElementById('ba');
+const before = document.getElementById('ba-before');
+const handle = document.getElementById('ba-handle');
+const baDesc = document.getElementById('ba-desc');
+let dragging = false;
+
+const setBA = (pct) => {
+  pct = Math.max(0, Math.min(100, pct));
+  before.style.clipPath = `inset(0 ${100-pct}% 0 0)`;
+  handle.style.left = pct + '%';
+  handle.setAttribute('aria-valuenow', Math.round(pct));
+};
+setBA(50);
+
+const onMove = (clientX) => {
+  const r = ba.getBoundingClientRect();
+  setBA(((clientX - r.left) / r.width) * 100);
+};
+ba.addEventListener('mousedown', (e) => { dragging = true; onMove(e.clientX); });
+window.addEventListener('mousemove', (e) => { if(dragging) onMove(e.clientX); });
+window.addEventListener('mouseup', () => dragging = false);
+ba.addEventListener('touchstart', (e) => { dragging = true; onMove(e.touches[0].clientX); }, { passive: true });
+window.addEventListener('touchmove', (e) => { if(dragging) onMove(e.touches[0].clientX); }, { passive: true });
+window.addEventListener('touchend', () => dragging = false);
+handle.addEventListener('keydown', (e) => {
+  const cur = parseFloat(handle.style.left || '50');
+  if(e.key === 'ArrowLeft') setBA(cur - 4);
+  if(e.key === 'ArrowRight') setBA(cur + 4);
+});
+
+/* thumbs */
+const thumbs = document.querySelectorAll('#thumbs .thumb');
+const palettes = [
+  { after:'linear-gradient(160deg, #E5DDCB, #C9B58A 55%, #8C7332)', before:'linear-gradient(160deg, #3B3833, #1C1B19)' },
+  { after:'linear-gradient(160deg, #EFE9DD, #B8D5DC 55%, #5AA6B6)', before:'linear-gradient(160deg, #2D2C2C, #18191B)' },
+  { after:'linear-gradient(160deg, #E2DBCC, #F0CD7E 55%, #F2A632)', before:'linear-gradient(160deg, #3B2E1C, #1C1610)' },
+  { after:'linear-gradient(160deg, #F5F0E4, #C9DDE2 55%, #75C4D0)', before:'linear-gradient(160deg, #2D2C2C, #18191B)' }
+];
+thumbs.forEach(t => {
+  t.addEventListener('click', () => {
+    thumbs.forEach(x => x.classList.remove('is-active'));
+    t.classList.add('is-active');
+    const i = parseInt(t.dataset.i, 10);
+    const p = palettes[i];
+    document.getElementById('ba-after').style.background =
+      `repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 14px, transparent 14px 28px), ${p.after}`;
+    document.getElementById('ba-before').style.background =
+      `repeating-linear-gradient(135deg, rgba(0,0,0,.07) 0 14px, transparent 14px 28px), ${p.before}`;
+    baDesc.textContent = t.dataset.desc;
+    setBA(50);
+  });
+});
+
+/* ============ FORM VALIDATION ============ */
+const form = document.getElementById('devis-form');
+const fields = [
+  { id:'f-prenom', test: v => v.trim().length >= 2 },
+  { id:'f-nom',    test: v => v.trim().length >= 2 },
+  { id:'f-email',  test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+  { id:'f-tel',    test: v => v.trim().replace(/\D/g,'').length >= 9 },
+  { id:'f-service',test: v => v.trim().length > 0 },
+  { id:'f-msg',    test: v => v.trim().length >= 10 },
+];
+fields.forEach(f => {
+  const el = document.getElementById(f.id);
+  el.addEventListener('blur', () => {
+    if(!f.test(el.value)) el.parentElement.classList.add('error');
+    else el.parentElement.classList.remove('error');
+  });
+  el.addEventListener('input', () => el.parentElement.classList.remove('error'));
+});
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  let ok = true;
+  fields.forEach(f => {
+    const el = document.getElementById(f.id);
+    if(!f.test(el.value)){ el.parentElement.classList.add('error'); ok = false; }
+  });
+  const rgpd = document.getElementById('f-rgpd');
+  if(!rgpd.checked){ rgpd.parentElement.style.color = '#ff7a59'; ok = false; }
+  else rgpd.parentElement.style.color = '';
+  if(!ok) return;
+  Array.from(form.children).forEach(c => { if(c.id !== 'form-success') c.style.display = 'none'; });
+  document.getElementById('form-success').classList.add('is-shown');
+  form.style.gridTemplateColumns = '1fr';
+});
+
+/* ============ BURGER (mobile) ============ */
+const burger = document.querySelector('.burger');
+const navLinks = document.querySelector('.nav-links');
+if(burger){
+  burger.addEventListener('click', () => {
+    const visible = navLinks.style.display === 'flex';
+    if(visible){
+      navLinks.style.display = '';
+    } else {
+      navLinks.style.display = 'flex';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '70px';
+      navLinks.style.left = '20px';
+      navLinks.style.right = '20px';
+      navLinks.style.background = 'var(--paper)';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.padding = '20px';
+      navLinks.style.borderRadius = '14px';
+      navLinks.style.border = '1px solid var(--line)';
+    }
+  });
+  navLinks.addEventListener('click', (e) => {
+    if(e.target.tagName === 'A' && window.innerWidth < 680){
+      navLinks.style.display = '';
+    }
+  });
+}
+</script>
+</body>
+</html>
