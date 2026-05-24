@@ -751,11 +751,15 @@ p{margin:0 0 1em; text-wrap:pretty}
 
   /* Services */
   .services{ border-radius: 18px 18px 0 0 }
-  .services-grid{ grid-template-columns:1fr }
-  .service{ grid-column: span 1; min-height:auto; padding:28px 20px }
-  .service h3{ font-size:22px; margin-top:10px }
-  .services-cta{ grid-column:span 1; padding:30px 20px; flex-direction:column; align-items:flex-start; gap:20px }
-  .services-cta h3{ font-size:20px }
+  .services-grid{ grid-template-columns: 1fr 1fr }
+  .service{ grid-column: span 1; min-height:auto; padding:20px 14px; gap:10px }
+  .service h3{ font-size:16px; margin-top:6px }
+  .service p{ font-size:12px }
+  .service .icon{ width:44px; height:44px; border-radius:10px }
+  .service .icon svg{ width:20px; height:20px }
+  .service .more{ display:none }
+  .services-cta{ grid-column:span 2; padding:26px 16px; flex-direction:column; align-items:flex-start; gap:16px }
+  .services-cta h3{ font-size:18px }
   .services-cta .btn{ width:100%; justify-content:center }
 
   /* Galerie */
@@ -766,11 +770,13 @@ p{margin:0 0 1em; text-wrap:pretty}
   .thumb .lbl{ font-size:9px }
 
   /* Process */
-  .proc-grid{ grid-template-columns:1fr }
-  .proc-step{ padding:24px 0 28px; border-right:none; border-bottom:1px solid var(--line) }
-  .proc-step .n{ font-size:clamp(48px,12vw,80px) }
-  .proc-step h4{ font-size:20px }
-  .proc-step p{ font-size:13px }
+  .proc-grid{ grid-template-columns: 1fr 1fr }
+  .proc-step{ padding:20px 12px 24px 0; border-right:1px solid var(--line); border-bottom:1px solid var(--line) }
+  .proc-step:nth-child(2n){ border-right:none; padding-right:0; padding-left:12px }
+  .proc-step .n{ font-size:clamp(36px,9vw,60px) }
+  .proc-step h4{ font-size:17px; margin:4px 0 4px }
+  .proc-step p{ font-size:12px }
+  .proc-step .dur{ font-size:9px }
 
   /* Témoignages */
   .testi-card{ padding:24px 20px }
