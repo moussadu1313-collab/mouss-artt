@@ -1205,7 +1205,7 @@ p{margin:0 0 1em; text-wrap:pretty}
         </div>
       </div>
 
-      <form class="form reveal delay-1" id="devis-form" novalidate>
+      <form class="form reveal delay-1" id="devis-form" action="https://formspree.io/f/mjgzerbe" method="POST" novalidate>
         <div class="field">
           <label for="f-prenom">Prénom</label>
           <input id="f-prenom" name="prenom" type="text" placeholder="Camille" required />
@@ -1457,7 +1457,7 @@ fields.forEach(f => {
   });
   el.addEventListener('input', () => el.parentElement.classList.remove('error'));
 });
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   let ok = true;
   fields.forEach(f => {
@@ -1468,9 +1468,28 @@ form.addEventListener('submit', (e) => {
   if(!rgpd.checked){ rgpd.parentElement.style.color = '#ff7a59'; ok = false; }
   else rgpd.parentElement.style.color = '';
   if(!ok) return;
-  Array.from(form.children).forEach(c => { if(c.id !== 'form-success') c.style.display = 'none'; });
-  document.getElementById('form-success').classList.add('is-shown');
-  form.style.gridTemplateColumns = '1fr';
+
+  const btn = form.querySelector('.btn-submit');
+  btn.textContent = 'Envoi en cours…';
+  btn.disabled = true;
+
+  try {
+    const data = new FormData(form);
+    const res = await fetch(form.action, {
+      method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+    });
+    if(res.ok) {
+      Array.from(form.children).forEach(c => { if(c.id !== 'form-success') c.style.display = 'none'; });
+      document.getElementById('form-success').classList.add('is-shown');
+      form.style.gridTemplateColumns = '1fr';
+    } else {
+      btn.textContent = 'Erreur — réessayez';
+      btn.disabled = false;
+    }
+  } catch(err) {
+    btn.textContent = 'Erreur — réessayez';
+    btn.disabled = false;
+  }
 });
 
 /* ============ BURGER (mobile) ============ */
