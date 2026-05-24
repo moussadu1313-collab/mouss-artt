@@ -359,15 +359,15 @@ p{margin:0 0 1em; text-wrap:pretty}
 }
 .ba .layer{ position:absolute; inset:0; }
 .ba .after{
-  background:
-    repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 14px, transparent 14px 28px),
-    linear-gradient(160deg, #E5DDCB, #C9B58A 55%, #8C7332);
+  background-size: cover;
+  background-position: center;
+  background-image: url('uploads/chantier4-apres-renovation-salon.png');
 }
 .ba .before{
   clip-path: inset(0 0 0 0);
-  background:
-    repeating-linear-gradient(135deg, rgba(0,0,0,.07) 0 14px, transparent 14px 28px),
-    linear-gradient(160deg, #3B3833, #1C1B19);
+  background-size: cover;
+  background-position: center;
+  background-image: url('uploads/chantier4-avant-renovation-salon.png');
 }
 .ba .layer .tag{
   position:absolute; top:18px;
@@ -798,7 +798,7 @@ p{margin:0 0 1em; text-wrap:pretty}
 
     <div class="about-grid">
       <div class="about-figure reveal">
-        <img src="uploads/Logo.jpeg" alt="Mouss'ART — logo et identité visuelle" />
+        <img src="uploads/chantier5-peinture-salon.png" alt="Chantier Mouss'ART — peinture salon" />
         <span class="lbl">Mouss'ART · Marseille depuis 2014</span>
         <div class="badge">
           <span class="n">12</span>
@@ -965,20 +965,20 @@ p{margin:0 0 1em; text-wrap:pretty}
     </div>
 
     <div class="gallery-thumbs reveal delay-1" id="thumbs">
-      <button class="thumb is-active" data-i="0" data-desc="Appartement T3 · Le Roucas-Blanc · 78 m²" style="--c1:#E5DDCB; --c2:#8C7332">
-        <span class="img"></span>
-        <span class="lbl"><span>Salon · 78m²</span><span class="n">01</span></span>
+      <button class="thumb is-active" data-i="0" data-desc="Rénovation salon · Avant / Après" style="--c1:#E5DDCB; --c2:#8C7332">
+        <span class="img" style="background-image:url('uploads/chantier4-apres-renovation-salon.png'); background-size:cover; background-position:center;"></span>
+        <span class="lbl"><span>Salon · Avant/Après</span><span class="n">01</span></span>
       </button>
-      <button class="thumb" data-i="1" data-desc="Haussmannien · 6ème arr. · 110 m²" style="--c1:#75C4D0; --c2:#3F8A99">
-        <span class="img"></span>
-        <span class="lbl"><span>Cuisine ouverte</span><span class="n">02</span></span>
+      <button class="thumb" data-i="1" data-desc="Pose cuisine · Réalisation complète" style="--c1:#75C4D0; --c2:#3F8A99">
+        <span class="img" style="background-image:url('uploads/chantier2-pose-cuisine.png'); background-size:cover; background-position:center;"></span>
+        <span class="lbl"><span>Cuisine</span><span class="n">02</span></span>
       </button>
-      <button class="thumb" data-i="2" data-desc="Boutique · Rue Paradis · 60 m²" style="--c1:#F2A632; --c2:#8C5510">
-        <span class="img"></span>
-        <span class="lbl"><span>Local commercial</span><span class="n">03</span></span>
+      <button class="thumb" data-i="2" data-desc="Pose parquet · Finition soignée" style="--c1:#F2A632; --c2:#8C5510">
+        <span class="img" style="background-image:url('uploads/chantier1-pose-parquet.png'); background-size:cover; background-position:center;"></span>
+        <span class="lbl"><span>Parquet</span><span class="n">03</span></span>
       </button>
-      <button class="thumb" data-i="3" data-desc="Salle de bain · Castellane · 9 m²" style="--c1:#D5CDBE; --c2:#2D2C2C">
-        <span class="img"></span>
+      <button class="thumb" data-i="3" data-desc="Rénovation salle de bain · Carrelage" style="--c1:#D5CDBE; --c2:#2D2C2C">
+        <span class="img" style="background-image:url('uploads/chantier7-renovation-sdb.png'); background-size:cover; background-position:center;"></span>
         <span class="lbl"><span>Salle de bain</span><span class="n">04</span></span>
       </button>
     </div>
@@ -1415,10 +1415,10 @@ handle.addEventListener('keydown', (e) => {
 /* thumbs */
 const thumbs = document.querySelectorAll('#thumbs .thumb');
 const palettes = [
-  { after:'linear-gradient(160deg, #E5DDCB, #C9B58A 55%, #8C7332)', before:'linear-gradient(160deg, #3B3833, #1C1B19)' },
-  { after:'linear-gradient(160deg, #EFE9DD, #B8D5DC 55%, #5AA6B6)', before:'linear-gradient(160deg, #2D2C2C, #18191B)' },
-  { after:'linear-gradient(160deg, #E2DBCC, #F0CD7E 55%, #F2A632)', before:'linear-gradient(160deg, #3B2E1C, #1C1610)' },
-  { after:'linear-gradient(160deg, #F5F0E4, #C9DDE2 55%, #75C4D0)', before:'linear-gradient(160deg, #2D2C2C, #18191B)' }
+  { after:"url('uploads/chantier4-apres-renovation-salon.png')", before:"url('uploads/chantier4-avant-renovation-salon.png')" },
+  { after:"url('uploads/chantier2-pose-cuisine.png')",           before:"url('uploads/chantier3-pose-cuisine-ikea.png')" },
+  { after:"url('uploads/chantier1-pose-parquet.png')",           before:"url('uploads/chantier5-peinture-salon.png')" },
+  { after:"url('uploads/chantier7-renovation-sdb.png')",         before:"url('uploads/chantier6-renovation-sdb-avant-apres.png')" }
 ];
 thumbs.forEach(t => {
   t.addEventListener('click', () => {
@@ -1426,10 +1426,14 @@ thumbs.forEach(t => {
     t.classList.add('is-active');
     const i = parseInt(t.dataset.i, 10);
     const p = palettes[i];
-    document.getElementById('ba-after').style.background =
-      `repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 14px, transparent 14px 28px), ${p.after}`;
-    document.getElementById('ba-before').style.background =
-      `repeating-linear-gradient(135deg, rgba(0,0,0,.07) 0 14px, transparent 14px 28px), ${p.before}`;
+    const after = document.getElementById('ba-after');
+    const before = document.getElementById('ba-before');
+    after.style.backgroundImage = p.after;
+    after.style.backgroundSize = 'cover';
+    after.style.backgroundPosition = 'center';
+    before.style.backgroundImage = p.before;
+    before.style.backgroundSize = 'cover';
+    before.style.backgroundPosition = 'center';
     baDesc.textContent = t.dataset.desc;
     setBA(50);
   });
