@@ -1415,10 +1415,10 @@ handle.addEventListener('keydown', (e) => {
 /* thumbs */
 const thumbs = document.querySelectorAll('#thumbs .thumb');
 const palettes = [
-  { after:"url('uploads/chantier4-apres-renovation-salon.png')", before:"url('uploads/chantier4-avant-renovation-salon.png')" },
-  { after:"url('uploads/chantier2-pose-cuisine.png')",           before:"url('uploads/chantier3-pose-cuisine-ikea.png')" },
-  { after:"url('uploads/chantier1-pose-parquet.png')",           before:"url('uploads/chantier5-peinture-salon.png')" },
-  { after:"url('uploads/chantier7-renovation-sdb.png')",         before:"url('uploads/chantier6-renovation-sdb-avant-apres.png')" }
+  { after:"url('uploads/chantier4-apres-renovation-salon.png')", before:"url('uploads/chantier4-avant-renovation-salon.png')", afterOnly: false },
+  { after:"url('uploads/chantier2-pose-cuisine.png')",           before:null, afterOnly: true },
+  { after:"url('uploads/chantier1-pose-parquet.png')",           before:null, afterOnly: true },
+  { after:"url('uploads/chantier7-renovation-sdb.png')",         before:null, afterOnly: true }
 ];
 thumbs.forEach(t => {
   t.addEventListener('click', () => {
@@ -1426,16 +1426,28 @@ thumbs.forEach(t => {
     t.classList.add('is-active');
     const i = parseInt(t.dataset.i, 10);
     const p = palettes[i];
-    const after = document.getElementById('ba-after');
-    const before = document.getElementById('ba-before');
-    after.style.backgroundImage = p.after;
-    after.style.backgroundSize = 'cover';
-    after.style.backgroundPosition = 'center';
-    before.style.backgroundImage = p.before;
-    before.style.backgroundSize = 'cover';
-    before.style.backgroundPosition = 'center';
+    const afterEl = document.getElementById('ba-after');
+    const beforeEl = document.getElementById('ba-before');
+    const handleEl = document.getElementById('ba-handle');
+    const avantTag = beforeEl.querySelector('.tag');
+
+    afterEl.style.backgroundImage = p.after;
+    afterEl.style.backgroundSize = 'cover';
+    afterEl.style.backgroundPosition = 'center';
+
+    if(p.afterOnly) {
+      setBA(100);
+      handleEl.style.display = 'none';
+      if(avantTag) avantTag.style.display = 'none';
+    } else {
+      beforeEl.style.backgroundImage = p.before;
+      beforeEl.style.backgroundSize = 'cover';
+      beforeEl.style.backgroundPosition = 'center';
+      handleEl.style.display = '';
+      if(avantTag) avantTag.style.display = '';
+      setBA(50);
+    }
     baDesc.textContent = t.dataset.desc;
-    setBA(50);
   });
 });
 
