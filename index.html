@@ -779,8 +779,14 @@ p{margin:0 0 1em; text-wrap:pretty}
   .proc-step .dur{ font-size:9px }
 
   /* Témoignages */
-  .testi-card{ padding:24px 20px }
-  .testi-card blockquote{ font-size:17px }
+  .testi-grid{ grid-template-columns: 1fr 1fr; gap:12px }
+  .testi-card{ padding:16px 14px; gap:12px }
+  .testi-card blockquote{ font-size:13px; line-height:1.4 }
+  .testi-card blockquote::before{ font-size:36px; top:28px; left:10px }
+  .testi-card .stars svg{ width:12px; height:12px }
+  .testi-card .who .av{ width:34px; height:34px; font-size:14px }
+  .testi-card .who b{ font-size:12px }
+  .testi-card .who span{ font-size:10px }
 
   /* Pourquoi */
   .why-list li{ grid-template-columns:44px 1fr; gap:14px; padding:20px 0 }
