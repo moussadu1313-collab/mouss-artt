@@ -358,17 +358,9 @@ p{margin:0 0 1em; text-wrap:pretty}
   margin-bottom: 28px;
 }
 .ba .layer{ position:absolute; inset:0; }
-.ba .after{
-  background-size: cover;
-  background-position: center;
-  background-image: url('uploads/chantier4-apres-renovation-salon.png');
-}
-.ba .before{
-  clip-path: inset(0 0 0 0);
-  background-size: cover;
-  background-position: center;
-  background-image: url('uploads/chantier4-avant-renovation-salon.png');
-}
+.ba .after{ background: var(--ink); }
+.ba .before{ clip-path: inset(0 0 0 0); background: var(--anthracite); }
+.ba .layer img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none; }
 .ba .layer .tag{
   position:absolute; top:18px;
   font-family:var(--f-mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
@@ -405,11 +397,8 @@ p{margin:0 0 1em; text-wrap:pretty}
 }
 .thumb.is-active{ opacity:1; border-color: var(--orange) }
 .thumb:hover{ opacity:1; transform: translateY(-2px) }
-.thumb .img{
-  position:absolute; inset:0;
-  background:
-    repeating-linear-gradient(135deg, rgba(255,255,255,.08) 0 10px, transparent 10px 20px),
-    linear-gradient(140deg, var(--c1, #2D2C2C), var(--c2, #18191B));
+.thumb-img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none;
 }
 .thumb .lbl{
   position:absolute; left:12px; bottom:10px; right:12px;
@@ -955,9 +944,11 @@ p{margin:0 0 1em; text-wrap:pretty}
 
     <div class="ba reveal" id="ba" role="figure" aria-label="Comparaison avant / après">
       <div class="layer after" id="ba-after">
+        <img id="ba-after-img" src="uploads/chantier4-apres-renovation-salon.png" alt="Après" />
         <span class="tag">Après</span>
       </div>
       <div class="layer before" id="ba-before">
+        <img id="ba-before-img" src="uploads/chantier4-avant-renovation-salon.png" alt="Avant" />
         <span class="tag">Avant</span>
       </div>
       <div class="desc" id="ba-desc">Appartement T3 · Le Roucas-Blanc · 78 m²</div>
@@ -965,20 +956,20 @@ p{margin:0 0 1em; text-wrap:pretty}
     </div>
 
     <div class="gallery-thumbs reveal delay-1" id="thumbs">
-      <button class="thumb is-active" data-i="0" data-desc="Rénovation salon · Avant / Après" style="--c1:#E5DDCB; --c2:#8C7332">
-        <span class="img" style="background-image:url('uploads/chantier4-apres-renovation-salon.png'); background-size:cover; background-position:center;"></span>
+      <button class="thumb is-active" data-i="0" data-desc="Rénovation salon · Avant / Après">
+        <img class="thumb-img" src="uploads/chantier4-apres-renovation-salon.png" alt="Salon après rénovation" />
         <span class="lbl"><span>Salon · Avant/Après</span><span class="n">01</span></span>
       </button>
-      <button class="thumb" data-i="1" data-desc="Pose cuisine · Réalisation complète" style="--c1:#75C4D0; --c2:#3F8A99">
-        <span class="img" style="background-image:url('uploads/chantier3-pose-cuisine-ikea.png'); background-size:cover; background-position:center;"></span>
+      <button class="thumb" data-i="1" data-desc="Pose cuisine · Réalisation complète">
+        <img class="thumb-img" src="uploads/chantier3-pose-cuisine-ikea.png" alt="Cuisine" />
         <span class="lbl"><span>Cuisine</span><span class="n">02</span></span>
       </button>
-      <button class="thumb" data-i="2" data-desc="Pose parquet · Finition soignée" style="--c1:#F2A632; --c2:#8C5510">
-        <span class="img" style="background-image:url('uploads/chantier1-pose-parquet.png'); background-size:cover; background-position:center;"></span>
+      <button class="thumb" data-i="2" data-desc="Pose parquet · Finition soignée">
+        <img class="thumb-img" src="uploads/chantier1-pose-parquet.png" alt="Parquet" />
         <span class="lbl"><span>Parquet</span><span class="n">03</span></span>
       </button>
-      <button class="thumb" data-i="3" data-desc="Rénovation salle de bain · Carrelage" style="--c1:#D5CDBE; --c2:#2D2C2C">
-        <span class="img" style="background-image:url('uploads/chantier6-renovation-sdb-avant-apres.png'); background-size:cover; background-position:center;"></span>
+      <button class="thumb" data-i="3" data-desc="Rénovation salle de bain · Carrelage">
+        <img class="thumb-img" src="uploads/chantier6-renovation-sdb-avant-apres.png" alt="Salle de bain" />
         <span class="lbl"><span>Salle de bain</span><span class="n">04</span></span>
       </button>
     </div>
@@ -1415,10 +1406,10 @@ handle.addEventListener('keydown', (e) => {
 /* thumbs */
 const thumbs = document.querySelectorAll('#thumbs .thumb');
 const palettes = [
-  { after:"url('uploads/chantier4-apres-renovation-salon.png')", before:"url('uploads/chantier4-avant-renovation-salon.png')", afterOnly: false },
-  { after:"url('uploads/chantier3-pose-cuisine-ikea.png')",      before:null, afterOnly: true },
-  { after:"url('uploads/chantier1-pose-parquet.png')",           before:null, afterOnly: true },
-  { after:"url('uploads/chantier6-renovation-sdb-avant-apres.png')", before:null, afterOnly: true }
+  { after:'uploads/chantier4-apres-renovation-salon.png', before:'uploads/chantier4-avant-renovation-salon.png', afterOnly: false },
+  { after:'uploads/chantier3-pose-cuisine-ikea.png',      before:null, afterOnly: true },
+  { after:'uploads/chantier1-pose-parquet.png',           before:null, afterOnly: true },
+  { after:'uploads/chantier6-renovation-sdb-avant-apres.png', before:null, afterOnly: true }
 ];
 thumbs.forEach(t => {
   t.addEventListener('click', () => {
@@ -1426,23 +1417,19 @@ thumbs.forEach(t => {
     t.classList.add('is-active');
     const i = parseInt(t.dataset.i, 10);
     const p = palettes[i];
-    const afterEl = document.getElementById('ba-after');
-    const beforeEl = document.getElementById('ba-before');
-    const handleEl = document.getElementById('ba-handle');
-    const avantTag = beforeEl.querySelector('.tag');
+    const afterImg  = document.getElementById('ba-after-img');
+    const beforeImg = document.getElementById('ba-before-img');
+    const handleEl  = document.getElementById('ba-handle');
+    const avantTag  = document.getElementById('ba-before').querySelector('.tag');
 
-    afterEl.style.backgroundImage = p.after;
-    afterEl.style.backgroundSize = 'cover';
-    afterEl.style.backgroundPosition = 'center';
+    afterImg.src = p.after;
 
     if(p.afterOnly) {
       setBA(100);
       handleEl.style.display = 'none';
       if(avantTag) avantTag.style.display = 'none';
     } else {
-      beforeEl.style.backgroundImage = p.before;
-      beforeEl.style.backgroundSize = 'cover';
-      beforeEl.style.backgroundPosition = 'center';
+      beforeImg.src = p.before;
       handleEl.style.display = '';
       if(avantTag) avantTag.style.display = '';
       setBA(50);
