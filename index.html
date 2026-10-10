@@ -182,6 +182,10 @@ p{margin:0 0 1em; text-wrap:pretty}
 .hero-right{ padding-bottom: 6px; display:flex; flex-direction:column; gap:32px; align-items:flex-start }
 .hero-right .lead{ max-width: 38ch }
 .cta-row{ display:flex; gap:14px; flex-wrap:wrap; align-items:center }
+.trust-line{ display:flex; align-items:center; gap:10px; margin-top:18px; font-size:13px; color:var(--muted) }
+.trust-line .stars{ display:flex; gap:2px; color:var(--orange); flex:none }
+.trust-line .stars svg{ width:14px; height:14px; fill:currentColor }
+.trust-line b{ color:var(--ink); font-weight:600 }
 .btn{
   display:inline-flex; align-items:center; gap:12px;
   padding:18px 26px; border-radius:999px; font-weight:500; font-size:15px;
@@ -626,10 +630,19 @@ p{margin:0 0 1em; text-wrap:pretty}
 .footer-bottom .socials a:hover{ background: var(--orange); border-color: var(--orange); color:#fff }
 .footer-bottom .socials svg{ width:16px; height:16px; fill:currentColor }
 
-/* sticky devis button - mobile */
-.sticky-cta{
+/* sticky devis + appel - mobile */
+.sticky-ctas{
   display:none;
   position:fixed; right:18px; bottom:18px; z-index:60;
+  align-items:center; gap:10px;
+}
+.sticky-call{
+  width:48px; height:48px; border-radius:50%; flex:none;
+  background:var(--ink); color:var(--paper);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.28);
+}
+.sticky-cta{
   padding: 14px 20px; border-radius: 999px;
   background:var(--orange); color:#fff;
   box-shadow: 0 10px 30px rgba(242,166,50,.45);
@@ -724,6 +737,7 @@ p{margin:0 0 1em; text-wrap:pretty}
   .nav-links.is-open a:last-child{ border-bottom: none }
 
   /* Bouton devis flottant */
+  .sticky-ctas{ display:flex }
   .sticky-cta{ display:inline-flex; align-items:center; gap:8px; font-size:13px; padding:12px 18px }
 
   /* Hero */
@@ -860,10 +874,14 @@ p{margin:0 0 1em; text-wrap:pretty}
   <button class="burger" aria-label="Menu"><span></span></button>
 </header>
 
-<a href="#contact" class="sticky-cta">
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-  Devis
-</a>
+<div class="sticky-ctas">
+  <a href="tel:+33768893867" class="sticky-call" aria-label="Appeler Mouss'ART">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+  </a>
+  <a href="#contact" class="sticky-cta">
+    Devis
+  </a>
+</div>
 
 <main id="top">
 
@@ -892,6 +910,16 @@ p{margin:0 0 1em; text-wrap:pretty}
             Appelez-moi
           </a>
           <a href="#gallery" class="btn btn-ghost">Voir les réalisations</a>
+        </div>
+        <div class="trust-line">
+          <span class="stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          </span>
+          <span><b>4,9/5</b> sur 48 avis vérifiés · Google &amp; Yoojo</span>
         </div>
       </div>
     </div>
@@ -1355,13 +1383,13 @@ p{margin:0 0 1em; text-wrap:pretty}
           <span class="err-msg">Merci d'indiquer votre prénom.</span>
         </div>
         <div class="field">
-          <label for="f-nom">Nom</label>
-          <input id="f-nom" name="nom" type="text" placeholder="Roux" required />
+          <label for="f-nom">Nom (optionnel)</label>
+          <input id="f-nom" name="nom" type="text" placeholder="Roux" />
           <span class="err-msg">Merci d'indiquer votre nom.</span>
         </div>
         <div class="field">
-          <label for="f-email">E‑mail</label>
-          <input id="f-email" name="email" type="email" placeholder="camille@exemple.fr" required />
+          <label for="f-email">E‑mail (optionnel)</label>
+          <input id="f-email" name="email" type="email" placeholder="camille@exemple.fr" />
           <span class="err-msg">Adresse e‑mail invalide.</span>
         </div>
         <div class="field">
@@ -1394,8 +1422,8 @@ p{margin:0 0 1em; text-wrap:pretty}
           </select>
         </div>
         <div class="field full">
-          <label for="f-msg">Votre message</label>
-          <textarea id="f-msg" name="message" placeholder="Quelques mots sur votre projet : pièces concernées, délai souhaité, particularités…" required></textarea>
+          <label for="f-msg">Votre message (optionnel)</label>
+          <textarea id="f-msg" name="message" placeholder="Quelques mots sur votre projet : pièces concernées, délai souhaité, particularités…"></textarea>
           <span class="err-msg">Merci de nous décrire votre projet en quelques mots.</span>
         </div>
         <div class="full">
@@ -1605,13 +1633,14 @@ thumbs.forEach(t => {
 const form = document.getElementById('devis-form');
 const fields = [
   { id:'f-prenom', test: v => v.trim().length >= 2 },
-  { id:'f-nom',    test: v => v.trim().length >= 2 },
-  { id:'f-email',  test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
   { id:'f-tel',    test: v => v.trim().replace(/\D/g,'').length >= 9 },
   { id:'f-service',test: v => v.trim().length > 0 },
-  { id:'f-msg',    test: v => v.trim().length >= 10 },
 ];
-fields.forEach(f => {
+/* champs optionnels : validés seulement s'ils sont remplis */
+const optionalFields = [
+  { id:'f-email', test: v => v.trim().length === 0 || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+];
+[...fields, ...optionalFields].forEach(f => {
   const el = document.getElementById(f.id);
   el.addEventListener('blur', () => {
     if(!f.test(el.value)) el.parentElement.classList.add('error');
@@ -1622,7 +1651,7 @@ fields.forEach(f => {
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   let ok = true;
-  fields.forEach(f => {
+  [...fields, ...optionalFields].forEach(f => {
     const el = document.getElementById(f.id);
     if(!f.test(el.value)){ el.parentElement.classList.add('error'); ok = false; }
   });
