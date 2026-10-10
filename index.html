@@ -1671,12 +1671,11 @@ if(burger){
 
 /* ============ COOKIE CONSENT + MICROSOFT CLARITY ============ */
 (function(){
-  const CLARITY_PROJECT_ID = 'CLARITY_PROJECT_ID'; // à remplacer par le vrai Project ID Clarity
+  const CLARITY_PROJECT_ID = 'yvi5umppi6';
   const CONSENT_KEY = 'martCookieConsent';
   const banner = document.getElementById('cookie-banner');
 
   function loadClarity(){
-    if(CLARITY_PROJECT_ID === 'CLARITY_PROJECT_ID') return; // pas encore configuré
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
