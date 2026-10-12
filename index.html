@@ -58,6 +58,7 @@ body{
   overflow-x:hidden;
 }
 img,svg,video{display:block; max-width:100%}
+picture{ display:contents }
 a{color:inherit; text-decoration:none}
 button{font:inherit; color:inherit; border:none; background:none; cursor:pointer}
 input,textarea,select{font:inherit; color:inherit}
@@ -196,6 +197,8 @@ p{margin:0 0 1em; text-wrap:pretty}
 .btn-primary:hover{ background:var(--orange); transform:translateY(-2px) }
 .btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink) }
 .btn-ghost:hover{ background:var(--ink); color:var(--paper) }
+.btn-call{ background:var(--orange); color:var(--ink) }
+.btn-call:hover{ background:var(--orange-2); transform:translateY(-2px) }
 .btn .arrow{ width:18px; height:18px; display:inline-block; position:relative }
 .btn .arrow::before{
   content:""; position:absolute; left:0; right:0; top:50%;
@@ -289,6 +292,9 @@ p{margin:0 0 1em; text-wrap:pretty}
 .about-body .sign .who b{ font-weight:600; display:block }
 .about-body .sign .who span{ color:var(--muted); font-size:13px }
 
+.read-more-btn{ display:none }
+.about-more{ display:block }
+
 .values{ display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-top:44px }
 .value{ padding:22px 0; border-top:1px solid var(--line) }
 .value .n{ font-family:var(--f-mono); font-size:11px; letter-spacing:.18em; color:var(--orange); text-transform:uppercase; margin-bottom:10px }
@@ -350,6 +356,36 @@ p{margin:0 0 1em; text-wrap:pretty}
 .services-cta h3{ font-family:var(--f-display); font-size: clamp(24px, 2.4vw, 36px); max-width: 22ch; margin:0; }
 .services-cta .btn-primary{ background: var(--orange) }
 .services-cta .btn-primary:hover{ background: var(--paper); color:var(--ink) }
+
+/* ============ SECTION CTA (réalisations / avis) ============ */
+.section-cta{
+  margin-top: 44px; padding: 36px 32px; border-radius: var(--r-lg);
+  display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+}
+.section-cta h3{ font-family:var(--f-display); font-size: clamp(22px, 2.2vw, 30px); max-width:24ch; margin:0 }
+.section-cta .btns{ display:flex; gap:12px; flex-wrap:wrap }
+.gallery .section-cta{ background: rgba(226,219,204,.05); border:1px solid rgba(226,219,204,.12) }
+.gallery .section-cta .btn-primary{ background:var(--orange); color:#fff }
+.gallery .section-cta .btn-primary:hover{ background:var(--paper); color:var(--ink) }
+.testi .section-cta{ background: var(--paper-2); border:1px solid var(--line) }
+
+.see-all-reviews{
+  display:inline-flex; align-items:center; gap:10px; min-height:44px;
+  margin-top:24px; font-weight:500; font-size:14px; color:var(--ink);
+  border-bottom:1px solid var(--line);
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.see-all-reviews:hover{ color:var(--orange-2); border-color:var(--orange-2) }
+.see-all-reviews .arrow{ width:16px; height:16px; display:inline-block; position:relative }
+.see-all-reviews .arrow::before{
+  content:""; position:absolute; left:0; right:0; top:50%;
+  height:1.2px; background:currentColor; transform:translateY(-50%);
+}
+.see-all-reviews .arrow::after{
+  content:""; position:absolute; right:0; top:50%; width:6px; height:6px;
+  border-right:1.2px solid currentColor; border-top:1.2px solid currentColor;
+  transform: translate(0,-50%) rotate(45deg);
+}
 
 /* ============ GALLERY (BEFORE/AFTER) ============ */
 .gallery{ background: var(--ink); color: var(--paper); padding-top: 0 }
@@ -757,17 +793,21 @@ p{margin:0 0 1em; text-wrap:pretty}
   .cookie-banner button{ padding:10px 14px; font-size:12px }
 
   /* Hero */
-  .hero{ padding-top: 86px; padding-bottom: 40px; min-height: auto }
+  .hero{ padding-top: 70px; padding-bottom: 28px; min-height: auto }
   .hero::before{ width:180px; height:180px; right:-40px; top:60px; opacity:.7 }
   .hero::after{ display:none }
-  h1{ font-size: clamp(36px, 9vw, 54px) }
-  .hero h1{ margin-bottom: 22px }
+  h1{ font-size: clamp(32px, 8.4vw, 54px) }
+  .hero h1{ margin-bottom: 16px }
   .hero h1 .pic{ width: 70px; height: 42px }
-  .hero-meta{ gap:10px; margin-bottom:24px }
-  .hero-meta .pill{ font-size:10px; padding:6px 10px }
-  .hero-right .lead{ font-size:15px; max-width:100% }
-  .cta-row{ flex-direction:column; width:100% }
-  .btn{ width:100%; justify-content:center; padding:16px 20px }
+  .hero-meta{ gap:8px; margin-bottom:14px }
+  .hero-meta .pill{ font-size:12px; padding:6px 10px }
+  .hero-grid{ gap:18px }
+  .hero-right{ gap:14px }
+  .hero-right .lead{ font-size:14px; line-height:1.4; max-width:100% }
+  .hero-right .lead{ order:1 }
+  .trust-line{ order:2; margin-top:0 }
+  .cta-row{ order:3; flex-direction:column; width:100% }
+  .btn{ width:100%; justify-content:center; padding:14px 20px }
 
   /* Stats hero */
   .hero-foot{
@@ -782,7 +822,7 @@ p{margin:0 0 1em; text-wrap:pretty}
   }
   .hero-foot > div:nth-child(2n){ border-right: none }
   .hero-foot .k{ font-size: 30px }
-  .hero-foot .l{ font-size:11px; margin-top:4px }
+  .hero-foot .l{ font-size:12px; margin-top:4px }
   .ticker{ display:none }
 
   /* Section headers */
@@ -793,11 +833,27 @@ p{margin:0 0 1em; text-wrap:pretty}
 
   /* About */
   .about-figure{ aspect-ratio:3/2; max-height:260px }
-  .about-figure .badge{ width:72px; height:72px }
-  .about-figure .badge .n{ font-size:22px }
-  .about-figure .badge .t{ font-size:7px }
+  .about-figure .badge{ width:96px; height:96px; padding:6px }
+  .about-figure .badge .n{ font-size:20px }
+  .about-figure .badge .t{ font-size:12px; letter-spacing:.04em; line-height:1.15 }
   .about-body h3{ font-size:22px !important; margin-bottom:16px }
   .about-body p{ font-size:14px }
+  .read-more-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    min-height:44px; padding:4px 0; margin:-4px 0 4px;
+    font-family:var(--f-sans); font-weight:600; font-size:14px; color:var(--orange-2);
+    border-bottom:1px solid currentColor;
+  }
+  .read-more-btn .chevron{
+    width:8px; height:8px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor;
+    transform:rotate(45deg); transition:transform .25s var(--ease);
+  }
+  .read-more-btn[aria-expanded="true"] .chevron{ transform:rotate(-135deg) }
+  .about-more{
+    display:block; max-height:0; overflow:hidden;
+    transition:max-height .35s var(--ease);
+  }
+  .about-more.is-open{ max-height:600px }
   .values{ grid-template-columns:1fr; gap:0 }
   .value{ padding:16px 0 }
   .value h4{ font-size:18px }
@@ -820,7 +876,14 @@ p{margin:0 0 1em; text-wrap:pretty}
   .ba .desc{ font-size:13px; bottom:12px; left:12px; right:12px }
   .ba .handle::before{ width:38px; height:38px }
   .gallery-thumbs{ grid-template-columns:repeat(2,1fr); gap:10px }
-  .thumb .lbl{ font-size:9px }
+  .thumb .lbl{ flex-direction:column; align-items:flex-start; gap:2px; font-size:12px }
+
+  /* Bloc appel / devis en fin de section */
+  .section-cta{ padding:24px 18px; flex-direction:column; align-items:flex-start; gap:16px; margin-top:28px }
+  .section-cta h3{ font-size:19px }
+  .section-cta .btns{ flex-direction:column; width:100% }
+  .section-cta .btns .btn{ width:100% }
+  .see-all-reviews{ margin-top:16px }
 
   /* Process */
   .proc-grid{ grid-template-columns: 1fr 1fr }
@@ -829,7 +892,7 @@ p{margin:0 0 1em; text-wrap:pretty}
   .proc-step .n{ font-size:clamp(36px,9vw,60px) }
   .proc-step h4{ font-size:17px; margin:4px 0 4px }
   .proc-step p{ font-size:12px }
-  .proc-step .dur{ font-size:9px }
+  .proc-step .dur{ font-size:12px }
 
   /* Témoignages */
   .testi-grid{ grid-template-columns: 1fr 1fr; gap:12px }
@@ -839,7 +902,7 @@ p{margin:0 0 1em; text-wrap:pretty}
   .testi-card .stars svg{ width:12px; height:12px }
   .testi-card .who .av{ width:34px; height:34px; font-size:14px }
   .testi-card .who b{ font-size:12px }
-  .testi-card .who span{ font-size:10px }
+  .testi-card .who span{ font-size:12px }
 
   /* Pourquoi */
   .why-list li{ grid-template-columns:44px 1fr; gap:14px; padding:20px 0 }
@@ -855,12 +918,32 @@ p{margin:0 0 1em; text-wrap:pretty}
   .form{ padding:22px 18px; gap:18px 0 }
   .form .submit-row{ flex-direction:column; align-items:stretch }
   .form .btn-submit{ justify-content:center; padding:16px 20px }
-  .form .submit-row .nb{ font-size:11px; text-align:center }
+  .form .submit-row .nb{ font-size:12px; text-align:center }
 
   /* Footer */
   .footer{ padding:50px 0 28px }
   .footer-grid{ grid-template-columns:1fr; gap:32px }
-  .footer-bottom{ flex-direction:column; align-items:flex-start; gap:14px; font-size:10px }
+  .footer-bottom{ flex-direction:column; align-items:flex-start; gap:14px; font-size:12px }
+
+  /* Lisibilité : aucun texte sous 12px */
+  .eyebrow{ font-size:12px }
+  .about-figure .lbl{ font-size:12px }
+  .value .n{ font-size:12px }
+  .service .num{ font-size:12px }
+  .ba .layer .tag{ font-size:12px }
+  .contact-info .lbl{ font-size:12px }
+  .field label{ font-size:12px }
+  .field .err-msg{ font-size:12px }
+  .footer-col h5{ font-size:12px }
+
+  /* Zones cliquables ≥ 44px */
+  .contact-info .val a{ display:inline-flex; align-items:center; min-height:44px }
+  .footer-col a{ display:inline-flex; align-items:center; min-height:44px }
+  .see-all-reviews{ min-height:44px }
+
+  /* Case à cocher agrandie */
+  .check .box{ width:22px; height:22px; margin-top:0 }
+  .check input:checked + .box::after{ left:7px; top:3px; width:6px; height:12px }
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -873,15 +956,18 @@ p{margin:0 0 1em; text-wrap:pretty}
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <a href="#top" class="brand" aria-label="Mouss'ART — accueil">
-    <img src="uploads/Logo.jpeg" alt="Mouss'ART logo" class="logo-img" />
+    <picture>
+      <source srcset="uploads/Logo-160.webp" type="image/webp" />
+      <img src="uploads/Logo-160.jpg" alt="Mouss'ART logo" class="logo-img" width="160" height="131" />
+    </picture>
     <span><b>Mouss</b><i>'</i><b>ART</b></span>
   </a>
   <nav class="nav-links" aria-label="Navigation principale">
-    <a href="#about">L'atelier</a>
-    <a href="#services">Services</a>
     <a href="#gallery">Réalisations</a>
-    <a href="#process">Méthode</a>
     <a href="#testi">Avis</a>
+    <a href="#services">Services</a>
+    <a href="#about">L'atelier</a>
+    <a href="#process">Méthode</a>
   </nav>
   <a href="#contact" class="nav-cta">
     <span class="dot" aria-hidden="true"></span>
@@ -911,7 +997,7 @@ p{margin:0 0 1em; text-wrap:pretty}
     <div class="hero-grid">
       <h1 class="reveal delay-1">
         <span class="row">L'art de <em class="italic">rénover</em></span>
-        <span class="row">votre intérieur, <span class="pic"><img src="uploads/Logo.jpeg" alt="" aria-hidden="true" /></span></span>
+        <span class="row">votre intérieur, <span class="pic"><picture><source srcset="uploads/Logo-160.webp" type="image/webp" /><img src="uploads/Logo-160.jpg" alt="" aria-hidden="true" width="160" height="131" loading="lazy" decoding="async" /></picture></span></span>
         <span class="row">jusqu'au <em class="italic">dernier détail.</em></span>
       </h1>
       <div class="hero-right reveal delay-2">
@@ -921,9 +1007,9 @@ p{margin:0 0 1em; text-wrap:pretty}
         </p>
         <div class="cta-row">
           <a href="#contact" class="btn btn-primary">Recevoir mon devis <span class="arrow"></span></a>
-          <a href="tel:+33768893867" class="btn btn-ghost">
+          <a href="tel:+33768893867" class="btn btn-call">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-            Appelez-moi
+            Appeler · 07 68 89 38 67
           </a>
           <a href="#gallery" class="btn btn-ghost">Voir les réalisations</a>
         </div>
@@ -963,75 +1049,151 @@ p{margin:0 0 1em; text-wrap:pretty}
   </div>
 </section>
 
-<!-- ============ ABOUT ============ -->
-<section class="section about" id="about">
+<!-- ============ GALLERY ============ -->
+<section class="section gallery" id="gallery">
   <div class="container">
     <div class="sec-head reveal">
       <div>
-        <span class="eyebrow">L'atelier</span>
-        <h2>Un savoir‑faire <em class="italic">artisanal</em>, une exigence sans compromis.</h2>
+        <span class="eyebrow">Avant / après</span>
+        <h2>Quand l'<em class="italic">avant</em> ne ressemble plus à l'<em class="italic">après.</em></h2>
       </div>
       <div>
         <p class="desc">
-          Mouss'ART est né d'une conviction simple : <em>un beau chantier commence par un chantier propre.</em>
-          Nous prenons en charge la rénovation intérieure de A à Z — de la prise de cotes
-          jusqu'à la dernière retouche — avec un seul artisan sur votre chantier, des matériaux soigneusement sélectionnés
-          et le respect absolu des délais que nous vous annonçons. Artisan depuis 2025.
+          Glissez le curseur pour comparer. Quelques réalisations récentes chez des particuliers marseillais —
+          salon, cuisine, parquet et salle de bain. Aucune retouche, aucun filtre.
         </p>
       </div>
     </div>
 
-    <div class="about-grid">
-      <div class="about-figure reveal">
-        <img src="uploads/photo-dirigeant.jpeg" alt="Moussa Chabou — fondateur de Mouss'ART" />
-        <span class="lbl">Mouss'ART · Marseille depuis 2025</span>
-        <div class="badge">
-          <span class="n">3</span>
-          <span class="t">Ans d'expérience</span>
-        </div>
+    <div class="ba reveal" id="ba" role="figure" aria-label="Comparaison avant / après">
+      <div class="layer after" id="ba-after">
+        <picture>
+          <source id="ba-after-source" srcset="uploads/chantier4-apres-renovation-salon.webp" type="image/webp" />
+          <img id="ba-after-img" src="uploads/chantier4-apres-renovation-salon.jpg" alt="Après" width="1200" height="904" loading="lazy" decoding="async" />
+        </picture>
+        <span class="tag">Après</span>
       </div>
-      <div class="about-body reveal delay-1">
-        <h3 style="font-size:38px; margin-bottom:24px">Un artisan, un interlocuteur unique, du devis à la livraison.</h3>
-        <p>
-          Sur beaucoup de chantiers, les intervenants se multiplient et personne n'est vraiment responsable.
-          Chez Mouss'ART, votre projet est piloté par un seul référent qui connaît le chantier dans le détail,
-          coordonne les corps de métier et vous tient informé chaque semaine de l'avancée.
-        </p>
-        <p>
-          Notre signature, c'est la <strong>finition</strong> : des bandes nettes, des angles francs,
-          des plinthes droites au millimètre. Le travail n'est pas livré tant qu'il n'a pas passé notre
-          propre contrôle qualité — celui qu'on appliquerait chez nous.
-        </p>
-        <div class="sign">
-          <div class="ph" aria-hidden="true"></div>
-          <div class="who">
-            <b>Moussa Chabou</b>
-            <span>Fondateur · Chef d'atelier</span>
-          </div>
-        </div>
+      <div class="layer before" id="ba-before">
+        <picture>
+          <source id="ba-before-source" srcset="uploads/chantier4-avant-renovation-salon.webp" type="image/webp" />
+          <img id="ba-before-img" src="uploads/chantier4-avant-renovation-salon.jpg" alt="Avant" width="1200" height="901" loading="lazy" decoding="async" />
+        </picture>
+        <span class="tag">Avant</span>
+      </div>
+      <div class="desc" id="ba-desc">Rénovation salon · Avant / Après</div>
+      <div class="handle" id="ba-handle" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Curseur avant/après"></div>
+    </div>
 
-        <div class="values">
-          <div class="value">
-            <div class="n">01 — Engagement</div>
-            <h4>Prix annoncé, prix tenu</h4>
-            <p>Devis détaillé, ligne par ligne. Aucune surprise en cours de chantier.</p>
-          </div>
-          <div class="value">
-            <div class="n">02 — Propreté</div>
-            <h4>Chantier nettoyé chaque soir</h4>
-            <p>Sols bâchés, meubles filmés, poussière aspirée. Vous rentrez chez vous, pas sur un chantier.</p>
-          </div>
-          <div class="value">
-            <div class="n">03 — Transparence</div>
-            <h4>Entreprise déclarée</h4>
-            <p>SIRET 941 694 671 00012. Devis et factures en bonne et due forme.</p>
-          </div>
-          <div class="value">
-            <div class="n">04 — Local</div>
-            <h4>Basés à Marseille</h4>
-            <p>Du 1er au 16e, plus métropole AMP. Interventions rapides, déplacements compris.</p>
+    <div class="gallery-thumbs reveal delay-1" id="thumbs">
+      <button class="thumb is-active" data-i="0" data-desc="Rénovation salon · Avant / Après">
+        <picture><source srcset="uploads/chantier4-apres-renovation-salon.webp" type="image/webp" /><img class="thumb-img" src="uploads/chantier4-apres-renovation-salon.jpg" alt="Salon après rénovation" width="1200" height="904" loading="lazy" decoding="async" /></picture>
+        <span class="lbl"><span>Salon · Avant/Après</span><span class="n">01</span></span>
+      </button>
+      <button class="thumb" data-i="1" data-desc="Pose cuisine · Réalisation complète">
+        <picture><source srcset="uploads/chantier3-pose-cuisine-ikea.webp" type="image/webp" /><img class="thumb-img" src="uploads/chantier3-pose-cuisine-ikea.jpg" alt="Cuisine" width="1200" height="900" loading="lazy" decoding="async" /></picture>
+        <span class="lbl"><span>Cuisine</span><span class="n">02</span></span>
+      </button>
+      <button class="thumb" data-i="2" data-desc="Pose parquet · Finition soignée">
+        <picture><source srcset="uploads/chantier1-pose-parquet.webp" type="image/webp" /><img class="thumb-img" src="uploads/chantier1-pose-parquet.jpg" alt="Parquet" width="1200" height="800" loading="lazy" decoding="async" /></picture>
+        <span class="lbl"><span>Parquet</span><span class="n">03</span></span>
+      </button>
+      <button class="thumb" data-i="3" data-desc="Rénovation salle de bain · Carrelage">
+        <picture><source srcset="uploads/chantier6-renovation-sdb-avant-apres.webp" type="image/webp" /><img class="thumb-img" src="uploads/chantier6-renovation-sdb-avant-apres.jpg" alt="Salle de bain" width="1200" height="900" loading="lazy" decoding="async" /></picture>
+        <span class="lbl"><span>Salle de bain</span><span class="n">04</span></span>
+      </button>
+    </div>
+
+    <div class="section-cta reveal">
+      <h3>Un projet qui ressemble à ça ? <em class="italic">Parlons-en.</em></h3>
+      <div class="btns">
+        <a href="tel:+33768893867" class="btn btn-call">Appeler · 07 68 89 38 67</a>
+        <a href="#contact" class="btn btn-primary">Demander un devis <span class="arrow"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section testi" id="testi">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Avis clients</span>
+        <h2>Ils nous ont confié <em class="italic">leurs murs.</em></h2>
+      </div>
+      <div>
+        <p class="desc">
+          55 avis vérifiés, une moyenne de 4,9/5 sur Google &amp; Yoojo. Quelques extraits — pour le reste,
+          demandez-nous des références dans votre quartier, nous en avons.
+        </p>
+      </div>
+    </div>
+
+    <div class="testi-grid reveal">
+      <article class="testi-card">
+        <div class="stars" aria-label="5 étoiles sur 5">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+        </div>
+        <blockquote>Excellent travail ! Il a peint mes murs avec beaucoup de soin et a posé un miroir parfaitement. Le résultat est propre et les finitions sont impeccables. Je recommande sans hésiter !</blockquote>
+        <div class="who">
+          <div class="av" style="background:#F2A632">ED</div>
+          <div>
+            <b>Evan D.</b>
+            <span>Avis vérifié · Google</span>
           </div>
         </div>
+      </article>
+
+      <article class="testi-card">
+        <div class="stars" aria-label="5 étoiles sur 5">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+        </div>
+        <blockquote>Excellent artisan ! Travail soigné, finitions impeccables, délais respectés. Il travaille seul, ce qui garantit un vrai suivi du chantier. Très bon contact.</blockquote>
+        <div class="who">
+          <div class="av" style="background:#5AA6B6; color:#18191B">TS</div>
+          <div>
+            <b>Titti S.</b>
+            <span>Avis vérifié · Google</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="testi-card">
+        <div class="stars" aria-label="5 étoiles sur 5">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
+        </div>
+        <blockquote>Un jeune artisan très professionnel : il a été très à l'écoute de mes recommandations. Un travail de pro, j'en suis très satisfaite. Un sérieux que l'on ne retrouve plus, je le recommande vivement !</blockquote>
+        <div class="who">
+          <div class="av" style="background:#2D2C2C">SD</div>
+          <div>
+            <b>Salia D.</b>
+            <span>Avis vérifié · Google</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <a href="https://share.google/LlMeHTsv8ZU8u1Ebv" target="_blank" rel="noopener" class="see-all-reviews">
+      Voir tous nos avis Google <span class="arrow"></span>
+    </a>
+
+    <div class="section-cta reveal">
+      <h3>Envie du même résultat chez vous ? <em class="italic">Parlons-en.</em></h3>
+      <div class="btns">
+        <a href="tel:+33768893867" class="btn btn-call">Appeler · 07 68 89 38 67</a>
+        <a href="#contact" class="btn btn-primary">Demander un devis <span class="arrow"></span></a>
       </div>
     </div>
   </div>
@@ -1122,52 +1284,84 @@ p{margin:0 0 1em; text-wrap:pretty}
   </div>
 </section>
 
-<!-- ============ GALLERY ============ -->
-<section class="section gallery" id="gallery">
+<!-- ============ ABOUT ============ -->
+<section class="section about" id="about">
   <div class="container">
     <div class="sec-head reveal">
       <div>
-        <span class="eyebrow">Avant / après</span>
-        <h2>Quand l'<em class="italic">avant</em> ne ressemble plus à l'<em class="italic">après.</em></h2>
+        <span class="eyebrow">L'atelier</span>
+        <h2>Un savoir‑faire <em class="italic">artisanal</em>, une exigence sans compromis.</h2>
       </div>
       <div>
         <p class="desc">
-          Glissez le curseur pour comparer. Quelques réalisations récentes chez des particuliers marseillais —
-          salon, cuisine, parquet et salle de bain. Aucune retouche, aucun filtre.
+          Mouss'ART est né d'une conviction simple : <em>un beau chantier commence par un chantier propre.</em>
+          Nous prenons en charge la rénovation intérieure de A à Z — de la prise de cotes
+          jusqu'à la dernière retouche — avec un seul artisan sur votre chantier, des matériaux soigneusement sélectionnés
+          et le respect absolu des délais que nous vous annonçons. Artisan depuis 2025.
         </p>
       </div>
     </div>
 
-    <div class="ba reveal" id="ba" role="figure" aria-label="Comparaison avant / après">
-      <div class="layer after" id="ba-after">
-        <img id="ba-after-img" src="uploads/chantier4-apres-renovation-salon.jpg" alt="Après" />
-        <span class="tag">Après</span>
+    <div class="about-grid">
+      <div class="about-figure reveal">
+        <picture>
+          <source srcset="uploads/photo-dirigeant.webp" type="image/webp" />
+          <img src="uploads/photo-dirigeant.jpeg" alt="Moussa Chabou — fondateur de Mouss'ART" width="586" height="780" loading="lazy" decoding="async" />
+        </picture>
+        <span class="lbl">Mouss'ART · Marseille depuis 2025</span>
+        <div class="badge">
+          <span class="n">3</span>
+          <span class="t">Ans d'expérience</span>
+        </div>
       </div>
-      <div class="layer before" id="ba-before">
-        <img id="ba-before-img" src="uploads/chantier4-avant-renovation-salon.jpg" alt="Avant" />
-        <span class="tag">Avant</span>
-      </div>
-      <div class="desc" id="ba-desc">Rénovation salon · Avant / Après</div>
-      <div class="handle" id="ba-handle" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Curseur avant/après"></div>
-    </div>
+      <div class="about-body reveal delay-1">
+        <h3 style="font-size:38px; margin-bottom:24px">Un artisan, un interlocuteur unique, du devis à la livraison.</h3>
+        <p>
+          Sur beaucoup de chantiers, les intervenants se multiplient et personne n'est vraiment responsable.
+          Chez Mouss'ART, votre projet est piloté par un seul référent qui connaît le chantier dans le détail,
+          coordonne les corps de métier et vous tient informé chaque semaine de l'avancée.
+        </p>
+        <button class="read-more-btn" id="about-toggle" type="button" aria-expanded="false" aria-controls="about-more">
+          <span class="label">Lire la suite</span> <span class="chevron" aria-hidden="true"></span>
+        </button>
+        <div class="about-more" id="about-more">
+          <p>
+            Notre signature, c'est la <strong>finition</strong> : des bandes nettes, des angles francs,
+            des plinthes droites au millimètre. Le travail n'est pas livré tant qu'il n'a pas passé notre
+            propre contrôle qualité — celui qu'on appliquerait chez nous.
+          </p>
+        </div>
+        <div class="sign">
+          <div class="ph" aria-hidden="true"></div>
+          <div class="who">
+            <b>Moussa Chabou</b>
+            <span>Fondateur · Chef d'atelier</span>
+          </div>
+        </div>
 
-    <div class="gallery-thumbs reveal delay-1" id="thumbs">
-      <button class="thumb is-active" data-i="0" data-desc="Rénovation salon · Avant / Après">
-        <img class="thumb-img" src="uploads/chantier4-apres-renovation-salon.jpg" alt="Salon après rénovation" />
-        <span class="lbl"><span>Salon · Avant/Après</span><span class="n">01</span></span>
-      </button>
-      <button class="thumb" data-i="1" data-desc="Pose cuisine · Réalisation complète">
-        <img class="thumb-img" src="uploads/chantier3-pose-cuisine-ikea.jpg" alt="Cuisine" />
-        <span class="lbl"><span>Cuisine</span><span class="n">02</span></span>
-      </button>
-      <button class="thumb" data-i="2" data-desc="Pose parquet · Finition soignée">
-        <img class="thumb-img" src="uploads/chantier1-pose-parquet.jpg" alt="Parquet" />
-        <span class="lbl"><span>Parquet</span><span class="n">03</span></span>
-      </button>
-      <button class="thumb" data-i="3" data-desc="Rénovation salle de bain · Carrelage">
-        <img class="thumb-img" src="uploads/chantier6-renovation-sdb-avant-apres.jpg" alt="Salle de bain" />
-        <span class="lbl"><span>Salle de bain</span><span class="n">04</span></span>
-      </button>
+        <div class="values">
+          <div class="value">
+            <div class="n">01 — Engagement</div>
+            <h4>Prix annoncé, prix tenu</h4>
+            <p>Devis détaillé, ligne par ligne. Aucune surprise en cours de chantier.</p>
+          </div>
+          <div class="value">
+            <div class="n">02 — Propreté</div>
+            <h4>Chantier nettoyé chaque soir</h4>
+            <p>Sols bâchés, meubles filmés, poussière aspirée. Vous rentrez chez vous, pas sur un chantier.</p>
+          </div>
+          <div class="value">
+            <div class="n">03 — Transparence</div>
+            <h4>Entreprise déclarée</h4>
+            <p>SIRET 941 694 671 00012. Devis et factures en bonne et due forme.</p>
+          </div>
+          <div class="value">
+            <div class="n">04 — Local</div>
+            <h4>Basés à Marseille</h4>
+            <p>Du 1er au 16e, plus métropole AMP. Interventions rapides, déplacements compris.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1219,80 +1413,6 @@ p{margin:0 0 1em; text-wrap:pretty}
         <h4>Finitions &amp; remise</h4>
         <p>Contrôle qualité ensemble, retouches immédiates, nettoyage final. Vous récupérez un intérieur prêt à vivre.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TESTIMONIALS ============ -->
-<section class="section testi" id="testi">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div>
-        <span class="eyebrow">Avis clients</span>
-        <h2>Ils nous ont confié <em class="italic">leurs murs.</em></h2>
-      </div>
-      <div>
-        <p class="desc">
-          55 avis vérifiés, une moyenne de 4,9/5 sur Google &amp; Yoojo. Quelques extraits — pour le reste,
-          demandez-nous des références dans votre quartier, nous en avons.
-        </p>
-      </div>
-    </div>
-
-    <div class="testi-grid reveal">
-      <article class="testi-card">
-        <div class="stars" aria-label="5 étoiles sur 5">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-        </div>
-        <blockquote>Excellent travail ! Il a peint mes murs avec beaucoup de soin et a posé un miroir parfaitement. Le résultat est propre et les finitions sont impeccables. Je recommande sans hésiter !</blockquote>
-        <div class="who">
-          <div class="av" style="background:#F2A632">ED</div>
-          <div>
-            <b>Evan D.</b>
-            <span>Avis vérifié · Google</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="testi-card">
-        <div class="stars" aria-label="5 étoiles sur 5">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-        </div>
-        <blockquote>Excellent artisan ! Travail soigné, finitions impeccables, délais respectés. Il travaille seul, ce qui garantit un vrai suivi du chantier. Très bon contact.</blockquote>
-        <div class="who">
-          <div class="av" style="background:#5AA6B6; color:#18191B">TS</div>
-          <div>
-            <b>Titti S.</b>
-            <span>Avis vérifié · Google</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="testi-card">
-        <div class="stars" aria-label="5 étoiles sur 5">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.1.7-5.4 4.9 1.6 7-6.3-3.8L5.7 21.5l1.6-7L1.9 9.6l7.1-.7z"/></svg>
-        </div>
-        <blockquote>Un jeune artisan très professionnel : il a été très à l'écoute de mes recommandations. Un travail de pro, j'en suis très satisfaite. Un sérieux que l'on ne retrouve plus, je le recommande vivement !</blockquote>
-        <div class="who">
-          <div class="av" style="background:#2D2C2C">SD</div>
-          <div>
-            <b>Salia D.</b>
-            <span>Avis vérifié · Google</span>
-          </div>
-        </div>
-      </article>
     </div>
   </div>
 </section>
@@ -1472,7 +1592,10 @@ p{margin:0 0 1em; text-wrap:pretty}
     <div class="footer-grid">
       <div>
         <a href="#top" class="brand">
-          <img src="uploads/Logo.jpeg" alt="Mouss'ART logo" class="logo-img" />
+          <picture>
+            <source srcset="uploads/Logo-160.webp" type="image/webp" />
+            <img src="uploads/Logo-160.jpg" alt="Mouss'ART logo" class="logo-img" width="160" height="131" loading="lazy" decoding="async" />
+          </picture>
           <span><b>Mouss</b><i style="color:var(--orange)">'</i><b>ART</b></span>
         </a>
         <p style="color:rgba(226,219,204,.6); margin-top:22px; max-width:34ch; font-size:14.5px; line-height:1.6">
@@ -1620,12 +1743,16 @@ thumbs.forEach(t => {
     t.classList.add('is-active');
     const i = parseInt(t.dataset.i, 10);
     const p = palettes[i];
-    const afterImg  = document.getElementById('ba-after-img');
-    const beforeImg = document.getElementById('ba-before-img');
-    const handleEl  = document.getElementById('ba-handle');
-    const avantTag  = document.getElementById('ba-before').querySelector('.tag');
+    const afterImg    = document.getElementById('ba-after-img');
+    const beforeImg   = document.getElementById('ba-before-img');
+    const afterSource = document.getElementById('ba-after-source');
+    const beforeSource= document.getElementById('ba-before-source');
+    const handleEl    = document.getElementById('ba-handle');
+    const avantTag    = document.getElementById('ba-before').querySelector('.tag');
+    const toWebp = (path) => path.replace(/\.jpe?g$/i, '.webp');
 
     afterImg.src = p.after;
+    if(afterSource) afterSource.srcset = toWebp(p.after);
 
     if(p.afterOnly) {
       setBA(0);
@@ -1633,6 +1760,7 @@ thumbs.forEach(t => {
       if(avantTag) avantTag.style.display = 'none';
     } else {
       beforeImg.src = p.before;
+      if(beforeSource) beforeSource.srcset = toWebp(p.before);
       handleEl.style.display = '';
       if(avantTag) avantTag.style.display = '';
       setBA(50);
@@ -1696,6 +1824,18 @@ form.addEventListener('submit', async (e) => {
     btn.disabled = false;
   }
 });
+
+/* ============ LIRE LA SUITE (L'atelier, mobile) ============ */
+(function(){
+  const toggle = document.getElementById('about-toggle');
+  const more = document.getElementById('about-more');
+  if(!toggle || !more) return;
+  toggle.addEventListener('click', () => {
+    const open = more.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.querySelector('.label').textContent = open ? 'Voir moins' : 'Lire la suite';
+  });
+})();
 
 /* ============ BURGER (mobile) ============ */
 const burger = document.querySelector('.burger');
