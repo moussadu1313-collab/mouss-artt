@@ -776,7 +776,7 @@ p{margin:0 0 1em; text-wrap:pretty}
   /* Bouton devis flottant */
   .sticky-ctas{ display:flex; transition: bottom .25s var(--ease) }
   .sticky-cta{ display:inline-flex; align-items:center; gap:8px; font-size:13px; padding:12px 18px }
-  body.cookie-banner-open .sticky-ctas{ bottom: 128px }
+  body.cookie-banner-open .sticky-ctas{ bottom: 150px }
 
   /* Bandeau cookies compact */
   .cookie-banner{
@@ -787,7 +787,7 @@ p{margin:0 0 1em; text-wrap:pretty}
   }
   .cookie-banner p{
     flex:1 1 100%; font-size:12px; line-height:1.4; margin:0;
-    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
   }
   .cookie-banner .row{ flex:1 1 100%; gap:8px }
   .cookie-banner button{ padding:10px 14px; font-size:12px }
@@ -1644,7 +1644,7 @@ p{margin:0 0 1em; text-wrap:pretty}
 
 <!-- ============ COOKIE BANNER ============ -->
 <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Consentement cookies">
-  <p>Mesure d'audience (Microsoft Clarity) pour améliorer le site. Aucune donnée revendue.</p>
+  <p>Mesure d'audience (Microsoft Clarity) et mesure de nos publicités (Google Ads). Aucune donnée revendue.</p>
   <div class="row">
     <button class="decline" id="cookie-decline" type="button">Refuser</button>
     <button class="accept" id="cookie-accept" type="button">Accepter</button>
@@ -1815,6 +1815,7 @@ form.addEventListener('submit', async (e) => {
       form.style.gridTemplateColumns = '1fr';
       if(window.clarity) window.clarity('event', 'formulaire_envoye');
       if(window.va) window.va('event', { name: 'Devis envoyé' });
+      if(window.gtag) gtag('event', 'conversion', {'send_to': 'AW-18498113661/82GRCM7E-ZwdEP2gy_RE'});
     } else {
       btn.textContent = 'Erreur — réessayez';
       btn.disabled = false;
@@ -1854,17 +1855,19 @@ if(burger){
   });
 }
 
-/* ============ SUIVI CLIC "APPELEZ-MOI" ============ */
-document.querySelectorAll('a[href^="tel:"]').forEach(a => {
-  a.addEventListener('click', () => {
-    if(window.clarity) window.clarity('event', 'clic_appel_telephone');
-    if(window.va) window.va('event', { name: 'Clic appel téléphone' });
-  });
+/* ============ SUIVI CLIC "APPELEZ-MOI" (écouteur délégué) ============ */
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[href^="tel:"]');
+  if(!link) return;
+  if(window.clarity) window.clarity('event', 'clic_appel_telephone');
+  if(window.va) window.va('event', { name: 'Clic appel téléphone' });
+  if(window.gtag) gtag('event', 'conversion', {'send_to': 'AW-18498113661/sk9cCMTj8ZwdEP2gy_RE', 'transport_type': 'beacon'});
 });
 
-/* ============ COOKIE CONSENT + MICROSOFT CLARITY ============ */
+/* ============ COOKIE CONSENT + MICROSOFT CLARITY + GOOGLE ADS ============ */
 (function(){
   const CLARITY_PROJECT_ID = 'yvi5umppi6';
+  const GOOGLE_ADS_ID = 'AW-18498113661';
   const CONSENT_KEY = 'martCookieConsent';
   const banner = document.getElementById('cookie-banner');
 
@@ -1876,9 +1879,30 @@ document.querySelectorAll('a[href^="tel:"]').forEach(a => {
     })(window, document, "clarity", "script", CLARITY_PROJECT_ID);
   }
 
+  let googleAdsLoaded = false;
+  function loadGoogleAds(){
+    if(googleAdsLoaded) return;
+    googleAdsLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function(){ dataLayer.push(arguments); };
+    gtag('consent', 'default', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'denied',
+      analytics_storage: 'granted'
+    });
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GOOGLE_ADS_ID;
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', GOOGLE_ADS_ID);
+  }
+
   const consent = localStorage.getItem(CONSENT_KEY);
   if(consent === 'accepted'){
     loadClarity();
+    loadGoogleAds();
   } else if(!consent && banner){
     banner.classList.add('is-shown');
     document.body.classList.add('cookie-banner-open');
@@ -1891,6 +1915,7 @@ document.querySelectorAll('a[href^="tel:"]').forEach(a => {
     banner.classList.remove('is-shown');
     document.body.classList.remove('cookie-banner-open');
     loadClarity();
+    loadGoogleAds();
   });
   if(declineBtn) declineBtn.addEventListener('click', () => {
     localStorage.setItem(CONSENT_KEY, 'declined');
